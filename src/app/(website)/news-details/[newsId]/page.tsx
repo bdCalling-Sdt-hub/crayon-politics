@@ -1,10 +1,10 @@
 import React from 'react'
-import DetailsClient from '../DetailsClient'
+import NewsDetailsClient from '../NewsDetailsClient'
 
 const page = ({ params: {newsId}}: {params: {newsId: string}}) => {
     return (
         <React.Fragment>
-            <DetailsClient newsId={newsId} />
+            <NewsDetailsClient newsId={newsId} />
         </React.Fragment>
     )
 }

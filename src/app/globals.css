@@ -28,3 +28,20 @@ body{
 .ant-modal-footer{
     margin-top: 0 !important;
 }
+
+
+/* and design pagination custom style*/
+.ant-pagination-item{
+    border-radius: 100% !important;
+}
+.ant-pagination .ant-pagination-item-active {
+    font-weight: 600;
+    background-color: #3E3E3E !important;
+    border: none !important;
+    border-color: none !important;
+    border-radius: 100%;
+}
+  
+.ant-pagination .ant-pagination-item-active a {
+    color: #ffffff !important;
+}

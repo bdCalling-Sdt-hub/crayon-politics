@@ -17,8 +17,6 @@ const Navbar = () => {
     const [open, setOpen] = useState(false);
     const path = usePathname();
 
-    console.log(path)
-
     const items = [
         {
             label: "Home",
@@ -26,7 +24,7 @@ const Navbar = () => {
         },
         {
             label: "Register to Vote",
-            path: "/register"
+            path: "/register-vote"
         },
         {
             label: "Donate",
