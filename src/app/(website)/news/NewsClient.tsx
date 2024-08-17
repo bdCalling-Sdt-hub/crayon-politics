@@ -152,7 +152,7 @@ const NewsClient = () => {
                         return (
                             <div
                                 key={index}
-                                className="flex relative bg-red-200 items-end group overflow-hidden cursor-pointer"
+                                className="flex relative items-end group overflow-hidden cursor-pointer"
                             >
                                 <Image 
                                     alt="PHOTO" 
@@ -160,6 +160,7 @@ const NewsClient = () => {
                                     width={1300} 
                                     height={300} 
                                     style={{objectFit: "fill"}}
+                                    className="group-hover:scale-110 transition-all duration-200 ease-linear"
                                 />
 
                                 <div className="absolute w-full left-0  p-4">
