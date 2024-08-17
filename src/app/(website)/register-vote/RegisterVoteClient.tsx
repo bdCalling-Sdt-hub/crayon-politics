@@ -17,7 +17,7 @@ const RegisterVoteClient = () => {
     }
 
     return (
-        <div className='container py-10'>
+        <div className='container py-10 h-[65.2vh]'>
 
             {/* heading  */}
             <Heading name="Register to Vote"  style="font-normal w-fit text-[32px] border-b-[4px] pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />

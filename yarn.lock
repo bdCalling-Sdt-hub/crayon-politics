@@ -2543,6 +2543,16 @@ rc-checkbox@~3.3.0:
     classnames "^2.3.2"
     rc-util "^5.25.2"
 
+rc-collapse@^3.7.3:
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/rc-collapse/-/rc-collapse-3.7.3.tgz#68161683d8fd1004bef4eb281fc106f3c8dc16eb"
+  integrity sha512-60FJcdTRn0X5sELF18TANwtVi7FtModq649H11mYF1jh83DniMoM4MqY627sEKRCTm4+WXfGDcB7hY5oW6xhyw==
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+    classnames "2.x"
+    rc-motion "^2.3.4"
+    rc-util "^5.27.0"
+
 rc-collapse@~3.7.3:
   version "3.7.3"
   resolved "https://registry.npmjs.org/rc-collapse/-/rc-collapse-3.7.3.tgz"
