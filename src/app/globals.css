@@ -12,6 +12,10 @@ body{
     background: white;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 /* style css for sub header select box start */
 .header .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
     border: none;
@@ -45,3 +49,15 @@ body{
 .ant-pagination .ant-pagination-item-active a {
     color: #ffffff !important;
 }
+
+/* timeline */
+
+/* .ant-timeline .ant-timeline-item-head{
+    width: 20px !important;
+    height: 20px !important;
+}
+ */
+
+ .ant-timeline .ant-timeline-item:last-child{
+    padding-bottom: 0px !important;
+ }

@@ -37,7 +37,7 @@ const Navbar = () => {
     ]
 
     return (
-        <div className='bg-primary sticky top-0 z-20 h-20 flex items-center justify-center'>
+        <div className={`bg-primary ${path === "/" ? "static top-0 z-0" : "sticky top-0 z-20"} h-20 flex items-center justify-center`}>
             <div className='container flex items-center justify-center md:justify-between gap-10'>
                 <div>
                     <Image

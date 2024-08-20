@@ -7,7 +7,6 @@ import React from 'react';
 const RegisterVoteClient = () => {
 
     const handleSubmit=(values: any)=>{
-        console.log(values)
         const url =  "https://register.vote.org/?campaign=free-tools&partner=111111"
         // const url = `https://register.vote.org/?campaign=free-tools&partner=111111&state=${encodeURIComponent(state)}`;
 
@@ -51,9 +50,9 @@ const RegisterVoteClient = () => {
                         suffixIcon={<ChevronDown size={24} color='#666666' />}
                         placeholder={<p className='font-normal text-[16px] leading-6 text-[#525252]'>Choose Your State</p>}
                     >
-                        <Select.Option value={"new work"}>New Work</Select.Option>
-                        <Select.Option value={"new work"}>New Work</Select.Option>
-                        <Select.Option value={"new work"}>New Work</Select.Option>
+                        <Select.Option value={"new work2"}>New Work</Select.Option>
+                        <Select.Option value={"new work3"}>New Work</Select.Option>
+                        <Select.Option value={"new work4"}>New Work</Select.Option>
                     </Select>
                 </Form.Item>
 
