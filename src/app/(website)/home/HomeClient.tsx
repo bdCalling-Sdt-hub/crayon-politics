@@ -10,12 +10,11 @@ import candidate7 from "@/assets/Cenk Uygur.png";
 import candidate8 from "@/assets/Cornel West.png";
 import candidate9 from "@/assets/Marianne Williamson.png";
 import Image, { StaticImageData } from 'next/image';
-import { MapPinned, Vote } from 'lucide-react';
+import { MapPinned } from 'lucide-react';
 import { GiVote } from 'react-icons/gi';
-import TimeLine from '@/ui/home/TimeLine';
 import Issue from '@/ui/home/Issue';
 import Link from 'next/link';
-import { BackTop } from 'antd';
+import { BackTop, ConfigProvider, Timeline } from 'antd';
 import { FaArrowUpLong } from 'react-icons/fa6';
 
 
@@ -141,6 +140,13 @@ const HomeClient = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const handleScrollToSection = (index: number) => {
+        const section = document.getElementById(`candidate-${index + 1}`);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
     
     return (
         <div className='container'>
@@ -209,11 +215,11 @@ const HomeClient = () => {
             </Link>
             
             {/* candidate information time line */}
-            <div>
+            <div className='grid grid-cols-1 gap-10'>
                 {
                     candidates?.map((candidate:ICandidateProps, index: number)=>{
                         return(
-                            <section id={`candidate-${index + 1}`} key={index} className="scroll-smooth  grid grid-cols-12 items-center h-screen">
+                            <section id={`candidate-${index + 1}`} key={index} className="scroll-smooth  grid grid-cols-12 items-center h-fit">
                                 <div className='col-span-9'>
 
                                     <div className='flex gap-10'>
@@ -238,8 +244,45 @@ const HomeClient = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='col-span-3  my-auto'>
-                                    <TimeLine name={candidate?.name} color={candidate?.color} />
+                                <div className='col-span-3 flex items-end justify-end'>
+
+                                    <ConfigProvider
+                                        theme={{
+                                            components: {
+                                                Timeline: {
+                                                    itemPaddingBottom: 50, 
+                                                    algorithm: true,
+                                                }
+                                            }
+                                        }}
+                                    >
+                                        <Timeline
+                                            mode='right'
+                                        >
+                                            {
+                                                candidates?.map((person:ICandidateProps, indexItem:number)=>{
+                                                    return(
+                                                        <Timeline.Item 
+                                                            key={indexItem} 
+                                                            dot={
+                                                                // <Link href={`#candidate-${index + 1}`}>
+                                                                    <div 
+                                                                        onClick={() => handleScrollToSection(indexItem)}
+                                                                        style={{
+                                                                            background: candidate.name === person.name ? person.color : "#525252"
+                                                                        }} 
+                                                                        className={`w-3 h-3 rounded-full`}
+                                                                    />
+                                                                // </Link>
+                                                            }
+                                                        >
+                                                            {person.name}
+                                                        </Timeline.Item>
+                                                    )
+                                                })
+                                            }
+                                        </Timeline>
+                                    </ConfigProvider>
                                 </div>
                             </section>
                         )

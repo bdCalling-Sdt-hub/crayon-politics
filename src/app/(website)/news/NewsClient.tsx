@@ -145,39 +145,90 @@ const NewsClient = () => {
             <Heading name="Today's Top Events"  style="font-normal w-fit text-[32px] border-b-[4px] pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
 
             {/* news container */}
-            <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
 
-                {
-                    news?.map((news:INewsProps, index:number) => {
-                        return (
-                            <div
-                                key={index}
-                                className="flex relative items-end group overflow-hidden cursor-pointer"
-                            >
-                                <Image 
-                                    alt="PHOTO" 
-                                    src={news.image} 
-                                    width={1300} 
-                                    height={300} 
-                                    style={{objectFit: "fill"}}
-                                    className="group-hover:scale-110 transition-all duration-200 ease-linear"
-                                />
+            <div className="grid grid-cols-12 gap-10">
+                <div className="col-span-7">
+                    <div className="border-b-[1px] border-[#D0D0D0] pb-6">
 
-                                <div className="absolute w-full left-0  p-4">
-                                    <div className="translate-y-[59px]  transition-all duration-500 group-hover:translate-y-0">
-                                        <p className="text-[#FAFAFA] font-semibold text-[16px] leading-8">{news.news}</p>
-                                        <Link href={`news-details/${index + 1}`} className="flex items-center gap-2 text-[#C7C7C7] font-medium text-[14px] leading-6 underline">
+                        {/* latest news */}
+                        <div className="h-[400px] w-full relative border">
+                            <Image
+                                alt="new image"
+                                src={News10}
+                                fill
+                            />
+                        </div>
+
+                        <div>
+                            <h1 className="text-[#242424] text-[32px] font-semibold leading-[48px]">What Kamala Harris and Beyoncé have in common</h1>
+                            <p className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]">Our society demands Black women be “twice as good.” Beyoncé has found a solution that Harris seems keen to copy.</p>
+                            <Link href={`news-details/1`} className="flex items-center gap-2 text-[#07254A] font-normal text-[14px] leading-6 underline">
+                                Visit Now
+                                <MdOutlineArrowOutward size={20} color="#07254A" />
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="mt-10">
+                        {
+                            news?.map((news:INewsProps, index:number) => {
+                                return(
+                                    <div key={index} className="flex gap-2 border-b-[1px] border-[#D0D0D0] pb-3 mb-3">
+                                        <div>
+                                            <h1 className="text-[#242424] text-[24px] font-semibold leading-[36px]">What Kamala Harris and Beyoncé have in common</h1>
+                                            <p className="text-[#5C5C5C] text-[16px] my-[6px] font-normal leading-[24px]">Our society demands Black women be “twice as good.” Beyoncé has found a solution that Harris seems keen to copy.</p>
+                                            <Link href={`news-details/${index + 1}`} className="flex items-center gap-2 text-[#07254A] font-medium text-[14px] leading-6 underline">
+                                                Visit Now
+                                                <MdOutlineArrowOutward size={20} color="#07254A" />
+                                            </Link>
+                                        </div>
+
+                                        {/* latest news */}
+                                        <div className="h-[150px] w-[250px] relative border">
+                                            <Image
+                                                alt="new image"
+                                                src={news.image}
+                                                fill
+                                                style={{objectFit: "fill"}}
+                                            />
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div className="col-span-5 ">
+                    {
+                        news.slice(0, 3)?.map((news:INewsProps, index:number) => {
+                            return(
+                                <div key={index} className="flex gap-2 border-b-[1px] border-[#D0D0D0] pb-3 mb-3">
+                                    <div>
+                                        <h1 className="text-[#242424] text-[16px] font-semibold leading-6">What Kamala Harris and Beyoncé have in common</h1>
+                                        <p className="text-[#5C5C5C] text-[14px] font-normal leading-[21px]">Our society demands Black women be “twice as good.” Beyoncé has found a...</p>
+                                        <Link href={`news-details/${index + 1}`} className="flex items-center gap-2 text-[#07254A] font-medium text-[14px] leading-6 underline">
                                             Visit Now
-                                            <MdOutlineArrowOutward size={20} color="#C7C7C7" />
+                                            <MdOutlineArrowOutward size={20} color="#07254A" />
                                         </Link>
                                     </div>
-                                </div>
 
-                            </div>
-                        );
-                    })
-                }
+                                    {/* latest news */}
+                                    <div className="h-[130px] w-[250px] relative border">
+                                        <Image
+                                            alt="new image"
+                                            src={news.image}
+                                            fill
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
+
+
 
             {/* pagination */}
             <div className="flex items-center justify-center mt-6">

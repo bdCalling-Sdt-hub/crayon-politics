@@ -1,5 +1,5 @@
 "use client";
-import { useProfileQuery } from '@/redux/apiSlices/authSlice';
+// import { useProfileQuery } from '@/redux/apiSlices/authSlice';
 import React, { ReactNode, useContext, useEffect, useState } from 'react';
 
 interface UserContextType {
@@ -10,14 +10,14 @@ interface UserContextType {
 export const UserContext = React.createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({children}: {children: ReactNode})=>{
-    const {data: profile} = useProfileQuery(undefined);
+    // const {data: profile} = useProfileQuery(undefined);
     const [user, setUser] = useState(null);
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         if(profile){
             setUser(profile);
         }
-    }, [profile]);
+    }, [profile]); */
 
 
     return(
