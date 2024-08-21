@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import Heading from '@/ui/shared/Heading';
 import { Collapse, Pagination, PaginationProps, theme } from 'antd';
-import { MdKeyboardArrowRight } from 'react-icons/md';
+import { MdKeyboardArrowRight, MdOutlineArrowOutward } from 'react-icons/md';
+import Link from 'next/link';
 
-const FaqClient: React.FC = () => {
-    const [page, setPage] = useState<string>("1");
+const Faq: React.FC = () => {
     const text = `Voter turnout is the percentage of voters that have actually taken part in the election.`;
     const getItems = (panelStyle:any) => [
         {
@@ -53,27 +53,12 @@ const FaqClient: React.FC = () => {
         borderRadius: token.borderRadiusLG,
         border: '1px solid #5555551E',
     };
-
-
-    const itemRender: PaginationProps['itemRender'] = (_, type, originalElement) => {
-        if (type === 'prev') {
-            return <a>Previous</a>;
-        }
-        if (type === 'next') {
-            return <a>Next</a>;
-        }
-        return originalElement;
-    };
-
     return (
-        <div className='container py-10'>
-
+        <div className='container mb-11'>
             <Heading 
                 name="Frequently Asked Questions" 
-                style="font-normal w-fit text-[32px] border-b-[4px] mx-auto pb-3 border-[#9C1E2E] leading-[48px] text-[#3E3E3E] mb-6" 
+                style="font-normal w-fit text-[32px] border-b-[4px] mx-auto pb-3 border-[#9C1E2E] leading-[48px] text-[#3E3E3E] mb-10" 
             />
-
-            <p className='text-[14px] text-[#525252] text-center leading-[18px] font-normal mb-10'> <span className='text-[#07254A]'>Crayon</span> <span className='text-[#FF9773]'>Politics</span> is an Quis urna. tempor consectetur risus quis dui. Ut leo. malesuada gravida eget ex. viverra Nunc Nunc dignissim, convallis.</p>
 
             <Collapse
                 bordered={false}
@@ -86,18 +71,11 @@ const FaqClient: React.FC = () => {
                 style={{background: token.colorBgContainer}}
                 items={getItems(panelStyle)}
             />
-
-            {/* pagination */}
-            <div className="flex items-center justify-center mt-6">
-                <Pagination 
-                    itemRender={itemRender} 
-                    current={parseInt(page)} 
-                    onChange={(page)=> setPage(page.toString())}
-                    total={50}
-                />
+            <div className='flex items-end justify-end'>
+                <Link href={"/faq"} className='flex items-center gap-1 underline text-[#9C1E2E] text-[14px] font-normal'>View More <MdOutlineArrowOutward/></Link>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default FaqClient;
+export default Faq

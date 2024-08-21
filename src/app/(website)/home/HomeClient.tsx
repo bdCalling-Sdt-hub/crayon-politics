@@ -17,6 +17,8 @@ import Link from 'next/link';
 import { BackTop, ConfigProvider, Timeline } from 'antd';
 import { FaArrowUpLong } from 'react-icons/fa6';
 import NewsLetter from '@/ui/home/NewsLetter';
+import Faq from '@/ui/home/Faq';
+import LearnAboutElection from '@/ui/home/LearnAboutElection';
 
 
 interface ICandidateProps{
@@ -349,7 +351,9 @@ const HomeClient = () => {
                     </div>
                 </BackTop>
             </div>
-            
+
+            <LearnAboutElection/>
+            <Faq/>
             <NewsLetter/>
         </>
     )
