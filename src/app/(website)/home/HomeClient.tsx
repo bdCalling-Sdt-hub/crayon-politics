@@ -19,7 +19,6 @@ import { FaArrowUpLong } from 'react-icons/fa6';
 import NewsLetter from '@/ui/home/NewsLetter';
 import Faq from '@/ui/home/Faq';
 import LearnAboutElection from '@/ui/home/LearnAboutElection';
-import CandidateSlider from '@/ui/home/CandidateSlider';
 // import CandidateSlider from '@/ui/home/CandidateSlider';
 
 
