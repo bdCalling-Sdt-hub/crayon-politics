@@ -6,14 +6,14 @@ import { Input } from 'antd';
 const NewsLetter:React.FC = () => {
     return (
         <div className='bg-[#F0F0F0] py-6'>
-            <div className='flex items-center container justify-between'>
+            <div className='flex lg:flex-row flex-col items-center container justify-between gap-3'>
                 <Image
                     alt='logo'
                     src={Logo}
                     width={300}
                     height={40}
                 />
-                <div className='flex items-center gap-3'>
+                <div className='flex lg:flex-row flex-col   items-center gap-3'>
                     <Input
                         style={{
                             background: "white",

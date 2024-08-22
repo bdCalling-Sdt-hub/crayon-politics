@@ -94,3 +94,25 @@ html{
 .slick-list{
     height: 500px !important;
 }
+
+.ant-timeline .ant-timeline-item-tail {
+    height: auto; 
+}
+
+
+@media (min-width: 1024px) {
+    .ant-timeline .ant-timeline-item-tail {
+        height: calc(100% - 10px); 
+    }
+} 
+
+
+.ant-timeline .ant-timeline-item-content { 
+ margin-inline-start: 15px; 
+} 
+
+@media (min-width: 1024px) {
+    .ant-timeline .ant-timeline-item-content { 
+        margin-inline-start: 26px; 
+       } 
+}

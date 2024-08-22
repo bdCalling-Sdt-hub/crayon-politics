@@ -41,14 +41,14 @@ const Footer:React.FC = () => {
     return (
         <div className='bg-[#07254A]'>
 
-            <div className='container flex items-center justify-between pt-20'>
-                <div className='flex items-center gap-10'>
+            <div className='container flex lg:flex-row flex-col items-center justify-between pt-20'>
+                <div className='flex items-center justify-center lg:gap-10 gap-4'>
                     {
                         items.map((route:IRoute, index:number) => {
                             return(
                                 <Link 
                                     key={index} 
-                                    className={` font-normal text-[16px] leading-6 text-[#F9F9F9]`} 
+                                    className={` font-normal lg:text-[16px] text-[14px] leading-6 text-[#F9F9F9]`} 
                                     href={`${route.path}`}
                                 >
                                     {route.label}
@@ -58,7 +58,7 @@ const Footer:React.FC = () => {
                     }
                 </div>
 
-                <div className='flex items-center gap-7'>
+                <div className='flex items-center gap-7 mt-3 lg:mt-0' >
                     <a href="https://www.facebook.com/" target='_blank'>
                         <Image
                             alt='social-link'
@@ -88,7 +88,7 @@ const Footer:React.FC = () => {
                 </div>
             </div>
 
-            <p onClick={()=>setOpen(true)} className='text-[#f9f9f9f9] container text-[16px] leading-6 font-normal my-10 cursor-pointer'>Let us know what you think</p>
+            <p onClick={()=>setOpen(true)} className='text-[#f9f9f9f9] container text-[16px] leading-6 font-normal my-10 cursor-pointer text-center lg:text-start'>Let us know what you think</p>
 
             <div className='border-t-[1px] border-[#9C1E2E] py-[10px]'>
                 <p className='text-center text-[#ffffff]'>© All rights reserved by Crayon Politics</p>

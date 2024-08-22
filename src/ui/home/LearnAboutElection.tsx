@@ -43,13 +43,13 @@ const about: IAboutProps[] = [
 
 const LearnAboutElection:React.FC = () => {
     return (
-        <div className='container my-20'>
+        <div className='container lg:my-20 my-10 '>
             <Heading 
                 name="Learn about U.S elections" 
-                style="font-normal w-fit text-[32px] border-b-[4px] pb-3 border-[#9C1E2E] leading-[48px] text-[#3E3E3E] mb-10" 
+                style="font-normal w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E] lg:leading-[48px] text-[#3E3E3E] lg:mb-10 mb-6" 
             />
 
-            <div className='grid grid-cols-3 gap-6'>
+            <div className='grid lg:grid-cols-3 grid-cols-2 gap-6'>
                 {
                     about?.map((item: IAboutProps, index: number)=>{
                         return(

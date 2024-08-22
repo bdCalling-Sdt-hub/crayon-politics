@@ -15,11 +15,11 @@ const NewsDetailsClient: React.FC<IDetailsProps> = ({newsId}) => {
                 <Image
                     alt="new details"
                     src={Details}
-                    fill
+                    fill 
                 />
 
                 <div
-                    className="absolute left-0 -bottom-4 bg-[#07254A] w-fit px-6 lg:rounded-r-lg rounded-r-lg py-2"
+                    className="absolute left-0 -bottom-4 bg-[#07254A] w-fit lg:px-6 px-2 lg:rounded-r-lg rounded-r-lg py-2 "
                     style={{
                         boxShadow:
                         "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
@@ -27,16 +27,16 @@ const NewsDetailsClient: React.FC<IDetailsProps> = ({newsId}) => {
                 >
                     <Heading
                         name="The EAC Celebrates National Poll Worker Recruitment"
-                        style="font-normal lg:text-[32px] text-[24px]  leading-[48px] text-[#FDFDFD]"
+                        style="font-normal lg:text-[32px] text-[20px]  lg:leading-[48px] leading-[30px] text-[#FDFDFD]"
                     />
                     <Heading
-                        name="Day, Inspiring New Generation of Election Workers"
-                        style="font-normal lg:text-[32px] text-[24px]  leading-[48px] text-[#FDFDFD]"
+                        name="Day, Inspiring New Generation of Election Workers mt-3"
+                        style="font-normal lg:text-[32px] text-[20px]  lg:leading-[48px] leading-[30px] text-[#FDFDFD]"
                     />
                 </div>
             </div>
 
-            <p className="text-[#767676] text-[16px] leading-[21px] font-normal mt-10">
+            <p className="text-[#767676] text-[16px] leading-[21px] font-normal mt-10 text-justify">
                 Quis urna. tempor consectetur risus quis dui. Ut leo. malesuada gravida
                 eget ex. viverra Nunc Nunc dignissim, convallis. odio non sapien sed
                 Praesent at sit luctus elit. leo. amet, urna viverra ac turpis Nunc
@@ -47,7 +47,7 @@ const NewsDetailsClient: React.FC<IDetailsProps> = ({newsId}) => {
             </p>
 
             <br />
-            <p className="text-[#767676] text-[16px] leading-[21px] font-normal">
+            <p className="text-[#767676] text-[16px] leading-[21px] font-normal text-justify">
                 Quis urna. tempor consectetur risus quis dui. Ut leo. malesuada gravida
                 eget ex. viverra Nunc Nunc dignissim, convallis. odio non sapien sed
                 Praesent at sit luctus elit. leo. amet, urna viverra ac turpis Nunc
@@ -58,7 +58,7 @@ const NewsDetailsClient: React.FC<IDetailsProps> = ({newsId}) => {
             </p>
 
             <br />
-            <p className="text-[#767676] text-[16px] leading-[21px] font-normal">
+            <p className="text-[#767676] text-[16px] leading-[21px] font-normal text-justify">
                 Quis urna. tempor consectetur risus quis dui. Ut leo. malesuada gravida
                 eget ex. viverra Nunc Nunc dignissim, convallis. odio non sapien sed
                 Praesent at sit luctus elit. leo. amet, urna viverra ac turpis Nunc

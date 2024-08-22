@@ -91,7 +91,15 @@ const HomeClient = () => {
     const [open, setOpen] = useState(false);
     const electionRef = useRef<HTMLDivElement | null>(null);
     const locationRef = useRef<HTMLDivElement | null>(null);
-    const [index, setIndex] = useState(0)
+    const [Index, setIndex] = useState(0) 
+    const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 1024);
+
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 1024);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -201,10 +209,10 @@ const HomeClient = () => {
             <div className='container'>
 
                 {/* heading */}
-                <div className='justify-center flex items-center gap-3 mt-20'>
-                    <p className='text-[#242424] text-[16px] leading-6 font-normal'>Meet your Candidates for the</p>
-
-                    <div onClick={()=>setOpen(!open)} className='bg-[#F8FFE5] relative cursor-pointer flex items-center gap-1 py-1 px-2 rounded-md'>
+                <div className='justify-center flex lg:flex-row flex-col  items-center gap-3 mt-20'>
+                    <p className='text-[#242424] text-[16px] lg:leading-6 leading-3 font-normal'>Meet your Candidates for the</p>
+ <div className=' flex items-center'>
+ <div onClick={()=>setOpen(!open)} className='bg-[#F8FFE5] relative cursor-pointer flex items-center gap-1 py-1 px-2 rounded-md'>
                         <GiVote color='#666666' size={24} />
                         <p className='text-[#666666] text-[16px] leading-6 font-normal'>2024 Senate Election</p>
 
@@ -216,7 +224,7 @@ const HomeClient = () => {
                         </div>
                     </div>
 
-                    <p className='text-[#242424] text-[16px] leading-6 font-normal'>in</p>
+                    <p className='text-[#242424] text-[16px] leading-6 font-normal px-1'>in</p>
                     <div onClick={()=>setLocationOpen(!openLocation)}  className='bg-[#F8FFE5] relative cursor-pointer flex items-center gap-1 py-1 px-2 rounded-md'>
                         <MapPinned color='#666666' size={24} />
                         <p className='text-[#666666] text-[16px] leading-6 font-normal'>California</p>
@@ -233,11 +241,13 @@ const HomeClient = () => {
                             </ul>
                         </div>
                     </div>
+ </div>
+                   
                 </div>
 
 
                 {/* candidate list section */}
-                <div className='mt-20 max-w-[1020px] mx-auto flex items-center justify-center gap-10 flex-wrap'>
+                <div className='mt-20 max-w-[1020px] mx-auto flex items-center justify-center gap-10 flex-wrap pb-[98px] lg:pb-[0px]'>
                     {
                         candidates?.map((candidate:ICandidateProps, index:number)=>{
                             return(
@@ -263,12 +273,12 @@ const HomeClient = () => {
                 </div>
                 
                 <Link href={"#candidate-1"}>
-                    <p className='cursor-pointer text-center text-[#242424] text-[16px] leading-6 font-normal py-[98px]'>Learn how they acted on the key voting issues below</p>
+                    <p className='cursor-pointer hidden lg:block text-center text-[#242424] text-[16px] leading-6 font-normal lg:py-[98px] pt-[40px] '>Learn how they acted on the key voting issues below</p>
                 </Link>
                 
-                <div className='flex items-start justify-between'>
+                <div className='flex lg:flex-row flex-col-reverse   items-start justify-between lg:gap-16 gap-6'>
                     
-                    <div className='w-[80%]'>
+                    <div className='lg:w-[80%] w-[100%]'>
                         <div className='grid grid-cols-1 overflow-y-auto snap-y gap-10'>
                             {
                                 candidates?.map((candidate: ICandidateProps, index: number) => {
@@ -276,23 +286,24 @@ const HomeClient = () => {
                                         <section 
                                             ref={(el:any) => (sectionRefs.current[index] = el)}
                                             id={`candidate-${index + 1}`} key={index} 
-                                            className="scroll-smooth snap-start snap-always flex items-center justify-center h-[calc(100vh-84px)] w-full"
+                                            className="scroll-smooth snap-start snap-always flex items-center justify-center lg:h-[calc(100vh-84px)] h-[60vh] w-full"
                                         >
-                                            <div className='w-full flex gap-10'>
+                                            <div className={`w-full flex lg:flex-row flex-col gap-5 lg:gap-10 `}>
                                                 <div>
                                                     <Image
                                                         src={candidate.image}
-                                                        alt='candidate photo'
+                                                        alt='candidate photo' 
                                                         width={150}
-                                                        height={200}
-                                                        style={{ borderRadius: "100%", margin: "0 auto", borderWidth: 2, borderColor: candidate.color }}
+                                                        height={200} 
+                                                        className=' mx-auto '
+                                                        style={{ borderRadius: "100%", borderWidth: 2, borderColor: candidate.color }}
                                                     />
-                                                    <p className='text-center text-[#07254A] whitespace-nowrap text-[24px] leading-[36px] font-medium mt-6'>{candidate?.name}</p>
+                                                    <p className='text-center lg:px-0 px-4 text-[#07254A] whitespace-nowrap lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
                                                     <p className="text-[#8F8F8F] whitespace-nowrap text-sm text-center leading-[21px] font-normal">({candidate?.party})</p>
                                                 </div>
                                                 <div className='w-full'>
-                                                    <div className='border-b-[2px] border-[#BEBEBE] mb-6'>
-                                                        <h1 style={{ borderBottom: `3px solid ${candidate.color}` }} className={`text-[#07254A] w-fit pb-1 font-medium text-[24px] leading-[36px]`}>Key Voter Issues</h1>
+                                                    <div className='border-b-[2px] border-[#BEBEBE] lg:mb-6 mb-4'>
+                                                        <h1 style={{ borderBottom: `3px solid ${candidate.color}` }} className={`text-[#07254A] w-fit pb-1 font-medium lg:text-[24px] text-[22px] lg:leading-[36px] leading-6 `}>Key Voter Issues</h1>
                                                     </div>
                                                     <Issue />
                                                 </div>
@@ -305,41 +316,48 @@ const HomeClient = () => {
                     </div>
                     
                     
-                    <section className='w-[20%] sticky top-[15%] z-10'>
-                        <ConfigProvider
-                            theme={{
-                                components: {
-                                    Timeline: {
-                                        itemPaddingBottom: 50,
-                                        algorithm: true,
-                                    }
-                                }
-                            }}
+                    <section className='lg:w-[20%] w-[100%] sticky lg:top-[15%] top-0 z-10 bg-[white] pt-4 pb-[0px] '>
+            <ConfigProvider
+                theme={{
+                    components: {
+                        Timeline: {
+                            itemPaddingBottom: isMobile ? 0 : 50,
+                            algorithm: true, 
+                        },
+                    },
+                }}
+            >
+                <Timeline 
+                // @ts-ignore
+                    mode={isMobile ? 'bottom' : 'left'}
+                    className={`flex ${isMobile ? 'flex-wrap gap-4 ' : 'lg:flex-col'}`}
+                >
+                    {candidates?.map((person: ICandidateProps, indexItem: number) => (
+                        <Timeline.Item
+                            key={indexItem}
+                            dot={
+                                <div
+                                    onClick={() => handleScrollToSection(indexItem, person.color)}
+                                    style={{
+                                        background: activeIndex === indexItem ? person.color : "#525252",
+                                    }}
+                                    className={`w-3 h-3 cursor-pointer rounded-full`}
+                                />
+                            }
                         >
-                            <Timeline mode='right'>
-                                {
-                                    candidates?.map((person: ICandidateProps, indexItem: number) => {
-                                        return (
-                                            <Timeline.Item
-                                                key={indexItem}
-                                                dot={
-                                                    <div
-                                                        onClick={() => handleScrollToSection(indexItem, person.color)}
-                                                        style={{
-                                                            background: activeIndex === indexItem ? person.color : "#525252",
-                                                        }}
-                                                        className={`w-3 h-3 cursor-pointer rounded-full`}
-                                                    />
-                                                }
-                                            >
-                                                <p className={` text-[#525252] ${person.color === color ? "font-semibold" : "font-normal"  } transition-all ease-linear duration-150  `}>{person.name}</p>
-                                            </Timeline.Item>
-                                        )
-                                    })
-                                }
-                            </Timeline>
-                        </ConfigProvider>
-                    </section>
+                            <p
+                                className={`text-[#525252] ${
+                                    person.color === color ? "font-semibold" : "font-normal"
+                                } transition-all ease-linear duration-150`}
+                            >
+                                {person.name}
+                            </p>
+                        </Timeline.Item>
+                    ))}
+                </Timeline>
+            </ConfigProvider>
+        </section>
+
                     
                 </div> 
 
