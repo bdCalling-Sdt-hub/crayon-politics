@@ -61,3 +61,36 @@ html{
  .ant-timeline .ant-timeline-item:last-child{
     padding-bottom: 0px !important;
  }
+
+ .custom-dots {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-dot {
+    width: 220px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dot-indicator {
+    width: 15px;
+    height: 13px;
+    border-radius: 50%;
+    display: block;
+}
+
+.custom-dot-active .dot-indicator {
+    transition: width 2s ease-in-out !important;
+}
+
+.slick-list{
+    height: 500px !important;
+}

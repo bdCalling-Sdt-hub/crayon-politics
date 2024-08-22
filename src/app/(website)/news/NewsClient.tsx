@@ -156,6 +156,7 @@ const NewsClient = () => {
                                 alt="new image"
                                 src={News10}
                                 fill
+                                // style={{imageResolution: ""}}
                             />
                         </div>
 

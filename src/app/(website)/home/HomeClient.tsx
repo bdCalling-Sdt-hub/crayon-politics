@@ -19,6 +19,8 @@ import { FaArrowUpLong } from 'react-icons/fa6';
 import NewsLetter from '@/ui/home/NewsLetter';
 import Faq from '@/ui/home/Faq';
 import LearnAboutElection from '@/ui/home/LearnAboutElection';
+import CandidateSlider from '@/ui/home/CandidateSlider';
+// import CandidateSlider from '@/ui/home/CandidateSlider';
 
 
 interface ICandidateProps{
@@ -90,6 +92,7 @@ const HomeClient = () => {
     const [open, setOpen] = useState(false);
     const electionRef = useRef<HTMLDivElement | null>(null);
     const locationRef = useRef<HTMLDivElement | null>(null);
+    const [index, setIndex] = useState(0)
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -239,8 +242,8 @@ const HomeClient = () => {
                     {
                         candidates?.map((candidate:ICandidateProps, index:number)=>{
                             return(
-                                <Link href={`#candidate-${index + 1}`} key={index}>
-                                    <div className='mx-auto' onClick={()=>setColor(candidate?.color)}>
+                                <Link href={`#candidate-1`} key={index}>
+                                    <div className='mx-auto' onClick={()=>( setColor(candidate?.color), setIndex(index)) }>
                                         <Image
                                             alt='Candidate'
                                             width={150}
@@ -265,16 +268,16 @@ const HomeClient = () => {
                 </Link>
                 
                 <div className='flex items-start justify-between'>
-                    {/* candidate information time line */}
+                    
                     <div className='w-[80%]'>
-                        <div className='grid grid-cols-1 overflow-y-auto gap-10'>
+                        <div className='grid grid-cols-1 overflow-y-auto snap-y gap-10'>
                             {
                                 candidates?.map((candidate: ICandidateProps, index: number) => {
                                     return (
                                         <section 
                                             ref={(el:any) => (sectionRefs.current[index] = el)}
                                             id={`candidate-${index + 1}`} key={index} 
-                                            className="scroll-smooth flex items-center justify-center h-screen w-full"
+                                            className="scroll-smooth snap-start snap-always flex items-center justify-center h-[calc(100vh-84px)] w-full"
                                         >
                                             <div className='w-full flex gap-10'>
                                                 <div>
@@ -302,8 +305,8 @@ const HomeClient = () => {
                         </div>
                     </div>
                     
-                    {/* sticky timeline */}
-                    <section className='w-[20%] sticky top-[15%] z-50'>
+                    
+                    <section className='w-[20%] sticky top-[15%] z-10'>
                         <ConfigProvider
                             theme={{
                                 components: {
@@ -338,7 +341,8 @@ const HomeClient = () => {
                             </Timeline>
                         </ConfigProvider>
                     </section>
-                </div>
+                    
+                </div> 
 
 
                 <BackTop>
