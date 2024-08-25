@@ -7,41 +7,19 @@ import photo4 from "@/assets/process.png";
 import photo5 from "@/assets/alart.png";
 import photo6 from "@/assets/result.png";
 import Heading from '../shared/Heading';
+import { useLearnQuery } from '@/redux/apiSlices/webSlice';
+import { imageUrl } from '@/redux/api/baseApi';
+import Link from 'next/link';
 
 
 interface IAboutProps{
-    name: string;
-    image: StaticImageData
+    title: string;
+    image: string;
+    url:string;
 }
 
-const about: IAboutProps[] = [
-    {
-        name: "State and Local elections",
-        image: photo1,
-    },
-    {
-        name: "primaries and caucuses",
-        image: photo2
-    },
-    {
-        name: "Laws and legal issues",
-        image: photo3
-    },
-    {
-        name: "presidential election process",
-        image: photo4
-    },
-    {
-        name: "Disasters and emergencies",
-        image: photo5
-    },
-    {
-        name: "Find results of elections",
-        image: photo6
-    }
-]
-
 const LearnAboutElection:React.FC = () => {
+    const {data: learns} = useLearnQuery(undefined)
     return (
         <div className='container lg:my-20 my-10 '>
             <Heading 
@@ -51,19 +29,25 @@ const LearnAboutElection:React.FC = () => {
 
             <div className='grid lg:grid-cols-3 grid-cols-2 gap-6'>
                 {
-                    about?.map((item: IAboutProps, index: number)=>{
+                    learns?.data?.map((item: IAboutProps, index: number)=>{
                         return(
-                            <div key={index} className='group bg-[#F6F6F6] hover:bg-[#07254A] transition-all duration-200 ease-in  rounded-lg px-3 py-6' >
-                                <Image
-                                    src={item.image}
-                                    alt='about icon'
-                                    width={50}
-                                    height={50}
-                                    style={{margin: "0 auto"}}
-                                    className='group-hover:brightness-0 group-hover:invert transition-all duration-200 ease-in'
-                                />
-                                <p className=' text-[#07254A] group-hover:text-white transition-all duration-200 ease-in text-[20px] leading-[30px] font-normal text-center mt-5'>{item?.name}</p>
-                            </div>
+                            <Link  key={index} href={`${item.url}`} target='_blank'>
+                                <div className='group bg-[#F6F6F6] hover:bg-[#07254A] transition-all duration-200 ease-in  rounded-lg px-3 py-6' >
+                                    {
+                                        item?.image
+                                        &&
+                                        <Image
+                                            src={`${imageUrl}${item?.image}`}
+                                            alt='about icon'
+                                            width={50}
+                                            height={50}
+                                            style={{margin: "0 auto"}}
+                                            className='group-hover:brightness-0 group-hover:invert transition-all duration-200 ease-in'
+                                        />
+                                    }
+                                    <p className=' text-[#07254A] group-hover:text-white transition-all duration-200 ease-in text-[20px] leading-[30px] font-normal text-center mt-5'>{item?.title}</p>
+                                </div>
+                            </Link>
                         )
                     })
                 }

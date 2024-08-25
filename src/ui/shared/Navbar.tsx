@@ -2,9 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Logo from "@/assets/logo.png"
-import { Badge, Dropdown, Input, Space } from 'antd';
-import { BiHeart, BiSearch } from 'react-icons/bi';
-import { BsCart } from 'react-icons/bs';
+import { Dropdown, Space } from 'antd';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { RxHamburgerMenu } from 'react-icons/rx';
@@ -67,28 +65,26 @@ const Navbar = () => {
 
 
     return (
-        <div className={`bg-primary lg:sticky top-0 z-20 h-20 flex items-center justify-center`}>
-            <div className='container flex items-center justify-between lg:justify-center md:justify-between gap-10'>
-                <div>
-                    <Image
+        <div className={`bg-primary lg:sticky top-0 z-20 h-20`}>
+            <div className='container flex items-center justify-between gap-10'>
+                <Image
                         alt='logo'
                         width={220}
                         height={60}
                         src={Logo}
                     />
-                </div> 
                 <div>
                      {/* Mobile device */}
-        <div className="lg:hidden block "> 
-          {/* @ts-ignore  */}
-          <Dropdown menu={{ items: menuItems }} trigger={['click']} overlayStyle={{padding:"1px"}}>
-            <a onClick={(e) => e.preventDefault()}>
-              <Space>
-                <RxHamburgerMenu size={20} />
-              </Space>
-            </a>
-          </Dropdown>
-        </div>
+                    <div className="lg:hidden block "> 
+                      {/* @ts-ignore  */}
+                      <Dropdown menu={{ items: menuItems }} trigger={['click']} overlayStyle={{padding:"1px"}}>
+                        <a onClick={(e) => e.preventDefault()}>
+                          <Space>
+                            <RxHamburgerMenu size={20} />
+                          </Space>
+                        </a>
+                      </Dropdown>
+                    </div>
                 </div>
 
                 <ul className='hidden sm:flex items-center gap-10'>
@@ -114,6 +110,10 @@ const Navbar = () => {
                     Your next election is in 61 days
                 </div>
 
+            </div>
+
+            <div>
+            
             </div>
         </div>
     )

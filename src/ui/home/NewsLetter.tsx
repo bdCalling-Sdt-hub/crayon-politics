@@ -1,9 +1,27 @@
 import Image from 'next/image'
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from "@/assets/logo.png"
 import { Input } from 'antd';
+import { useSubscribeMutation } from '@/redux/apiSlices/webSlice';
+import toast from 'react-hot-toast';
 
 const NewsLetter:React.FC = () => {
+    const [keyword, setKeyword] = useState<string>("")
+    const [subscribe ] = useSubscribeMutation();
+
+    const handleSubscribe=async()=>{
+        try {
+            await subscribe({email: keyword}).then((response:any)=>{
+                if(response?.data?.success === true){
+                    toast.success(response?.data?.message)
+                    setKeyword("")
+                }
+            })
+        } catch (error:any) {
+            toast.error(error?.data?.message)
+            
+        }
+    }
     return (
         <div className='bg-[#F0F0F0] py-6'>
             <div className='flex lg:flex-row flex-col items-center container justify-between gap-3'>
@@ -22,10 +40,13 @@ const NewsLetter:React.FC = () => {
                             boxShadow: "none",
                             borderRadius: 90
                         }}
+                        type='email'
+                        value={keyword}
+                        onChange={(e)=> setKeyword(e.target.value)}
                         placeholder='Enter Your Email'
                         className='h-12 w-[400px]'
                     />
-                    <button className='rounded-[90px] h-12 bg-[#07254A] border-none outline-none  text-white w-[226px]'>Subscribe to newsletter</button>
+                    <button disabled={!keyword} onClick={handleSubscribe} className='disabled:bg-gray-600  rounded-[90px] h-12 bg-[#07254A] border-none outline-none  text-white w-[226px]'>Subscribe to newsletter</button>
                 </div>
             </div>
             

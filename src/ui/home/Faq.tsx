@@ -4,47 +4,19 @@ import Heading from '@/ui/shared/Heading';
 import { Collapse, Pagination, PaginationProps, theme } from 'antd';
 import { MdKeyboardArrowRight, MdOutlineArrowOutward } from 'react-icons/md';
 import Link from 'next/link';
+import { useFaqQuery } from '@/redux/apiSlices/webSlice';
 
 const Faq: React.FC = () => {
-    const text = `Voter turnout is the percentage of voters that have actually taken part in the election.`;
-    const getItems = (panelStyle:any) => [
-        {
-            key: '1',
-            label: <p className=' text-[#525252] '>Why should you vote?</p>,
-            children: <p>{text}</p>,
-            style: panelStyle,
-        },
-        {
-            key: '2',
-            label: <p className=' text-[#525252] '>Why should you vote?</p>,
-            children: <p>{text}</p>,
-            style: panelStyle,
-        },
-        {
-            key: '3',
-            label: <p className=' text-[#525252] '>Why should you vote?</p>,
-            children: <p>{text}</p>,
-            style: panelStyle,
-        },
-        {
-            key: '4',
-            label: <p className=' text-[#525252] '>Why should you vote?</p>,
-            children: <p>{text}</p>,
-            style: panelStyle,
-        },
-        {
-            key: '5',
-            label: <p className=' text-[#525252] '>Why should you vote?</p>,
-            children: <p>{text}</p>,
-            style: panelStyle,
-        },
-        {
-            key: '6',
-            label: <p className=' text-[#525252] '>Why should you vote?</p>,
-            children: <p>{text}</p>,
+    const {data: faqs} = useFaqQuery(undefined);
+    
+    const getItems = (panelStyle:any) => faqs?.data?.slice(0, 4)?.map((item:any, index:number)=>{
+        return{
+            key: index + 1,
+            label: <p className=' text-[#525252] '>{item?.question} </p>,
+            children: <p>{item?.answer}</p>,
             style: panelStyle,
         }
-    ];
+    })
 
     const { token } = theme.useToken();
     const panelStyle = {

@@ -1,12 +1,22 @@
 "use client";
+import { useIntentMutation } from '@/redux/apiSlices/webSlice';
+import Payment from '@/ui/Payment';
 import Heading from '@/ui/shared/Heading';
-import { Button, Checkbox, Form } from 'antd';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { Button, Form } from 'antd';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+
+const stripePromise = loadStripe('pk_test_51JwnGrLiLwVG3jO00U7B3YmokwdPnB6FKd1uresJgkbsL4f5xUfCmbFdBaGO42KvLmLfVzsgo1oIQToXABSTyypS00xQsEgKZ6');
 
 const DonateClient = () => {
-    const [selectedAmount, setSelectedAmount] = useState<number>();
+    const [selectedAmount, setSelectedAmount] = useState<number>(0);
     const [checked, setChecked] = useState("")
     const [form] = Form.useForm();
+    const [open, setOpen] = useState(false);
+    const [intent, {isLoading}] = useIntentMutation();
+    const [clientSecret, setClientSecret] = useState("")
 
     useEffect(()=>{
         if(checked){
@@ -14,30 +24,49 @@ const DonateClient = () => {
         }
     }, [form, checked])
 
-    const handleSubmit=(values: any)=>{
-        console.log(values)
+    const handleSubmit=async()=>{
+        try {
+            await intent({price: selectedAmount}).then((response:any)=>{
+                if(response?.data?.success === true){
+                    setClientSecret(response?.data?.data?.client_secret)
+                    setOpen(true)
+                }
+            })
+        } catch (error:any) {
+            toast.error(error?.data?.message)
+            
+        }
+        
     }
     return (
         <div className='container py-10'>
 
             {/* heading  */}
-            <Heading name="Defend Our Democracy and Donate Today"  style="font-normal w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
+           <div className='px-24'>
+           <Heading name="Defend Our Democracy and Donate Today"  style="font-normal   w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
 
-            <p className='lg:w-[80%] w-[100%] font-normal text-[16px] text-justify leading-6 text-[#525252]'>
-                Vote.org fights for voters in every state, in every way possible. There is no other organization engaging in this work on every front, on every level: serving individual voters, creatively building tech and partnerships and programs to reach underserved voters, and fighting harmful voter suppression laws in the courts.
-            </p>
+                <p className='font-normal text-[16px] text-justify leading-6 text-[#525252]'>
+                    Vote.org fights for voters in every state, in every way possible. There is no other organization engaging in this work on every front, on every level: serving individual voters, creatively building tech and partnerships and programs to reach underserved voters, and fighting harmful voter suppression laws in the courts.
+                </p>
 
-            <br />
+                <br />
 
-            <p className='lg:w-[80%] w-[100%] font-normal text-[16px]  text-justify leading-6 text-[#525252]'>
-                Vote.org fights for voters in every state, in every way possible. There is no other organization engaging in this work on every front, on every level: serving individual voters, creatively building tech and partnerships and programs to reach underserved voters, and fighting harmful voter suppression laws in the courts.
-            </p>
+                <p className='font-normal text-[16px]  text-justify leading-6 text-[#525252]'>
+                    Vote.org fights for voters in every state, in every way possible. There is no other organization engaging in this work on every front, on every level: serving individual voters, creatively building tech and partnerships and programs to reach underserved voters, and fighting harmful voter suppression laws in the courts.
+                </p>
+           </div>
 
-            <div className='lg:mt-20 mt-5 bg-primary lg:w-[50%] w-[100%]  mx-auto rounded-lg p-6 '>
+            <div className='lg:mt-10 mt-5 bg-primary lg:w-[40%] w-[100%]  mx-auto rounded-lg p-6 '>
                 <Heading name="Your donation"  style="font-medium text-[32px]  leading-[24px] text-[#242424] mb-8 lg:text-start text-center " />
                 <div className='flex items-center lg:justify-between justify-center border-b-[3px] pb-4 border-dashed border-[#D0D0D0]'>
-                    <Heading name={selectedAmount?.toString() || "0"}  style="font-medium text-[40px]  leading-[24px] text-[#07254A]" />
-                    <Heading name="USD"  style="font-normal text-[32px]  leading-[24px] text-[#5C5C5C]" />
+
+                    <input 
+                        value={selectedAmount} 
+                        type='number'
+                        onChange={(e:any)=> setSelectedAmount(e.target.value)} 
+                        className='w-full  bg-transparent outline-none shadow-none font-medium text-[35px]  leading-[24px] text-[#07254A]'
+                    />
+                    <Heading name="USD"  style="font-normal text-[28px]  leading-[24px] text-[#5C5C5C]" />
                 </div>
 
                 <Form onFinish={handleSubmit} form={form}>
@@ -119,11 +148,16 @@ const DonateClient = () => {
                             }}
                             className='w-[200px]'
                         >
-                            Donate
+                            {isLoading ? "Loading..." : "Donate"}
                         </Button>
                     </Form.Item>
                 </Form>
             </div>
+
+            <Elements stripe={stripePromise}>
+                <Payment amount={selectedAmount} clientSecret={clientSecret} open={open} setOpen={setOpen} />
+            </Elements>
+
         </div>
     )
 }

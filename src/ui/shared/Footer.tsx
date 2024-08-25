@@ -7,6 +7,8 @@ import instagram  from "@/assets/instagram.png";
 import twitter  from "@/assets/twitter.png";
 import Modal from './Modal';
 import { Button, Form, Input } from 'antd';
+import { useFeedbackMutation } from '@/redux/apiSlices/webSlice';
+import toast from 'react-hot-toast';
 
 interface IRoute{
     label : string;
@@ -19,6 +21,9 @@ interface IValuesProps{
 
 const Footer:React.FC = () => {
     const [open, setOpen] = useState(false);
+    const [keyword, setKeyword] = useState<string>("")
+    const [ feedback ] = useFeedbackMutation();
+    const [form] = Form.useForm()
 
     const items = [
         {
@@ -35,8 +40,17 @@ const Footer:React.FC = () => {
         }
     ]
 
-    const handleSubmit=(values:IValuesProps)=>{
-        console.log(values)
+    const handleSubmit=async(values:any)=>{
+        try {
+            await feedback({content: values?.content}).then((response:any)=>{
+                if(response?.data?.success === true){
+                    toast.success(response?.data?.message)
+                    form.resetFields()
+                }
+            })
+        } catch (error:any) {
+            toast.error(error?.data?.message) 
+        }
     }
     return (
         <div className='bg-[#07254A]'>
@@ -99,9 +113,9 @@ const Footer:React.FC = () => {
                 setOpen={setOpen}
                 open={open}
                 body={<div>
-                    <Form className='mt-4' onFinish={handleSubmit}>
+                    <Form className='mt-4' onFinish={handleSubmit} form={form}>
                         <Form.Item
-                            name={"feedback"}
+                            name={"content"}
                             rules={[
                                 {
                                     required: true,
@@ -119,10 +133,12 @@ const Footer:React.FC = () => {
                                     width: "100%",
                                     height: 200
                                 }}
+                                onChange={(e)=>setKeyword(e.target.value)}
                             />
                         </Form.Item>
                         <Form.Item className='flex mt-8 items-center justify-center' style={{marginBottom: 0}}>
                                 <Button
+                                    disabled={!keyword}
                                     htmlType='submit'
                                     style={{
                                         background: "#07254A",

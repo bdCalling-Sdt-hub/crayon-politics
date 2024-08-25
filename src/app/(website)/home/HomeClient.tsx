@@ -19,6 +19,8 @@ import { FaArrowUpLong } from 'react-icons/fa6';
 import NewsLetter from '@/ui/home/NewsLetter';
 import Faq from '@/ui/home/Faq';
 import LearnAboutElection from '@/ui/home/LearnAboutElection';
+import { useCandidateQuery, useElectionQuery, useStateQuery } from '@/redux/apiSlices/webSlice';
+import { imageUrl } from '@/redux/api/baseApi';
 // import CandidateSlider from '@/ui/home/CandidateSlider';
 
 
@@ -26,65 +28,11 @@ interface ICandidateProps{
     name: string;
     image: StaticImageData,
     color: string,
-    party?: string;
+    politicalAffiliation?: string;
+    issues?: [string];
 }
 
-const candidates: ICandidateProps[] = [
-    {
-        name: "Joe Biden",
-        image: candidate1,
-        color: "#FF7D29",
-        party: "Democratic Party"
-    },
-    {
-        name: "Robert Kennedy Jr.",
-        image: candidate2,
-        color: "#E4003A",
-        party: "Democratic Party"
-    },
-    {
-        name: "Chose Oliver",
-        image: candidate3,
-        color: "#EB3678",
-        party: "Democratic Party"
-    },
-    {
-        name: "Jason Palmer",
-        image: candidate4,
-        color: "#FB773C",
-        party: "Democratic Party"
-    },
-    {
-        name: "Lady Gaga",
-        image: candidate5,
-        color: "#A1DD70",
-        party: "Democratic Party"
-    },
-    {
-        name: "Donald Trump",
-        image: candidate6,
-        color: "#B43F3F",
-        party: "Democratic Party"
-    },
-    {
-        name: "Cenk Uygur",
-        image: candidate7,
-        color: "#00712D",
-        party: "Democratic Party"
-    },
-    {
-        name: "Cornel West",
-        image: candidate8,
-        color: "#7C00FE",
-        party: "Democratic Party"
-    },
-    {
-        name: "Marianne Williamson",
-        image: candidate9,
-        color: "#3795BD",
-        party: "Democratic Party"
-    },
-]
+
 
 const HomeClient = () => {
     const [openLocation, setLocationOpen] = useState(false);
@@ -93,6 +41,19 @@ const HomeClient = () => {
     const locationRef = useRef<HTMLDivElement | null>(null);
     const [Index, setIndex] = useState(0) 
     const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 1024);
+    const {data: states} = useStateQuery(undefined)
+    const {data: elections} = useElectionQuery(undefined)
+    const [state, setState] = useState<string>("")
+    const [election, setElection] = useState<string>("");
+    const {data: candidates} = useCandidateQuery(undefined)
+    console.log(candidates)
+
+    useEffect(()=>{
+        if(elections?.data[0] || states?.data[0]){
+            setElection(elections?.data[0]?.name)
+            setState(states?.data[0]?.name)
+        }
+    }, [elections, states])
 
 
     useEffect(() => {
@@ -211,59 +172,87 @@ const HomeClient = () => {
                 {/* heading */}
                 <div className='justify-center flex lg:flex-row flex-col  items-center gap-3 mt-20'>
                     <p className='text-[#242424] text-[16px] lg:leading-6 leading-3 font-normal'>Meet your Candidates for the</p>
- <div className=' flex items-center'>
- <div onClick={()=>setOpen(!open)} className='bg-[#F8FFE5] relative cursor-pointer flex items-center gap-1 py-1 px-2 rounded-md'>
-                        <GiVote color='#666666' size={24} />
-                        <p className='text-[#666666] text-[16px] leading-6 font-normal'>2024 Senate Election</p>
+                    <div className=' flex items-center'>
+                        <div onClick={()=>setOpen(!open)} className='bg-[#F8FFE5] relative cursor-pointer flex items-center gap-1 py-1 px-2 rounded-md'>
+                            <GiVote color='#666666' size={24} />
+                            <p className='text-[#666666] text-[16px] leading-6 font-normal'>{election}</p>
 
-                        <div ref={electionRef} style={{display: open ? "block" : "none"}} className='absolute top-10 left-0 w-full bg-white shadow-md'>
-                            <ul>
-                                <li className='border-b-[1px] text-[16px] text-[#5c5c5c] leading-[18px] font-normal py-[11px] px-4 border-[#DDDDDD]'>2024 Senate Election</li>
-                                <li className='text-[16px] leading-[18px] text-[#5c5c5c] font-normal py-[11px] px-4'>2024 House Election</li>
-                            </ul>
+                            <div ref={electionRef} style={{display: open ? "block" : "none"}} className='absolute top-10 left-0 w-full bg-white shadow-md'>
+                                <ul>
+                                    {
+                                        elections?.data?.map((item: any, index:number)=>{
+                                            return(
+                                                <li 
+                                                    key={index}
+                                                    onClick={()=>setElection(item?.name)}  
+                                                    className='
+                                                        border-b-[1px] text-[16px] text-[#5c5c5c] 
+                                                        leading-[18px] font-normal py-[11px] px-4 
+                                                        border-[#DDDDDD]
+                                                    '
+                                                >
+                                                    {item?.name}
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+
+                        <p className='text-[#242424] text-[16px] leading-6 font-normal px-1'>in</p>
+                        <div onClick={()=>setLocationOpen(!openLocation)}  className='bg-[#F8FFE5] relative cursor-pointer flex items-center gap-1 py-1 px-2 rounded-md'>
+                            <MapPinned color='#666666' size={24} />
+                            <p className='text-[#666666] text-[16px] leading-6 font-normal'>{state}</p>
+
+                            <div ref={locationRef} style={{display: openLocation ? "block" : "none"}} className='absolute top-10 left-0 w-full bg-white shadow-md'>
+                                <ul>
+                                    {
+                                        states?.data?.map((item: any, index:number)=>{
+                                            return(
+                                                <li 
+                                                    key={index}
+                                                    onClick={()=>setState(item?.name)} 
+                                                    className='
+                                                        border-b-[1px] text-[#5c5c5c] text-[16px] 
+                                                        leading-[18px] font-normal 
+                                                        py-[11px] px-4 border-[#DDDDDD]
+                                                    '
+                                                >
+                                                    {item?.name}
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
-                    <p className='text-[#242424] text-[16px] leading-6 font-normal px-1'>in</p>
-                    <div onClick={()=>setLocationOpen(!openLocation)}  className='bg-[#F8FFE5] relative cursor-pointer flex items-center gap-1 py-1 px-2 rounded-md'>
-                        <MapPinned color='#666666' size={24} />
-                        <p className='text-[#666666] text-[16px] leading-6 font-normal'>California</p>
-
-                        <div ref={locationRef} style={{display: openLocation ? "block" : "none"}} className='absolute top-10 left-0 w-full bg-white shadow-md'>
-                            <ul>
-                                <li className='border-b-[1px] text-[#5c5c5c] text-[16px] leading-[18px] font-normal py-[11px] px-4 border-[#DDDDDD]'>Boston</li>
-                                <li className='border-b-[1px] text-[#5c5c5c] text-[16px] leading-[18px] font-normal py-[11px] px-4 border-[#DDDDDD]'>California</li>
-                                <li className='border-b-[1px] text-[#5c5c5c] text-[16px] leading-[18px] font-normal py-[11px] px-4 border-[#DDDDDD]'>Arizona</li>
-                                <li className='border-b-[1px] text-[#5c5c5c] text-[16px] leading-[18px] font-normal py-[11px] px-4 border-[#DDDDDD]'>Alabama</li>
-                                <li className='border-b-[1px] text-[#5c5c5c] text-[16px] leading-[18px] font-normal py-[11px] px-4 border-[#DDDDDD]'>Illinois</li>
-                                <li className='border-b-[1px] text-[#5c5c5c] text-[16px] leading-[18px] font-normal py-[11px] px-4 border-[#DDDDDD]'>Iowa</li>
-                                <li className='py-[11px] text-[#5c5c5c] text-[16px] leading-[18px] font-normal px-4'>Alaska</li>
-                            </ul>
-                        </div>
-                    </div>
- </div>
-                   
                 </div>
 
 
                 {/* candidate list section */}
                 <div className='mt-20 max-w-[1020px] mx-auto flex items-center justify-center gap-10 flex-wrap pb-[98px] lg:pb-[0px]'>
                     {
-                        candidates?.map((candidate:ICandidateProps, index:number)=>{
+                        candidates?.data?.map((candidate:ICandidateProps, index:number)=>{
                             return(
                                 <Link href={`#candidate-1`} key={index}>
                                     <div className='mx-auto' onClick={()=>( setColor(candidate?.color), setIndex(index)) }>
-                                        <Image
-                                            alt='Candidate'
-                                            width={150}
-                                            height={150}
-                                            src={candidate.image}
-                                            style={{
-                                                borderRadius: "100%",
-                                                borderWidth: 3,
-                                                borderColor: candidate.color
-                                            }}
-                                        />
+                                        {
+                                            candidate?.image
+                                            &&
+                                            <Image
+                                                alt='Candidate'
+                                                width={150}
+                                                height={150}
+                                                src={`${imageUrl}${candidate.image}`}
+                                                style={{
+                                                    borderRadius: "100%",
+                                                    borderWidth: 3,
+                                                    borderColor: candidate.color
+                                                }}
+                                            />
+                                        }
                                         <p className='text-[#242424] text-[16px] text-center leading-6 mt-4 font-normal'>{candidate.name}</p>
                                     </div>
                                 </Link>
@@ -281,7 +270,7 @@ const HomeClient = () => {
                     <div className='lg:w-[80%] w-[100%]'>
                         <div className='grid grid-cols-1 overflow-y-auto snap-y gap-10'>
                             {
-                                candidates?.map((candidate: ICandidateProps, index: number) => {
+                                candidates?.data?.map((candidate: ICandidateProps, index: number) => {
                                     return (
                                         <section 
                                             ref={(el:any) => (sectionRefs.current[index] = el)}
@@ -290,22 +279,29 @@ const HomeClient = () => {
                                         >
                                             <div className={`w-full flex lg:flex-row flex-col gap-5 lg:gap-10 `}>
                                                 <div>
-                                                    <Image
-                                                        src={candidate.image}
-                                                        alt='candidate photo' 
-                                                        width={150}
-                                                        height={200} 
-                                                        className=' mx-auto '
-                                                        style={{ borderRadius: "100%", borderWidth: 2, borderColor: candidate.color }}
-                                                    />
+                                                    {
+                                                        candidate?.image
+                                                        &&
+                                                        <Image
+                                                            alt='Candidate'
+                                                            width={150}
+                                                            height={150}
+                                                            src={`${imageUrl}${candidate.image}`}
+                                                            style={{
+                                                                borderRadius: "100%",
+                                                                borderWidth: 3,
+                                                                borderColor: candidate.color
+                                                            }}
+                                                        />
+                                                    }
                                                     <p className='text-center lg:px-0 px-4 text-[#07254A] whitespace-nowrap lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
-                                                    <p className="text-[#8F8F8F] whitespace-nowrap text-sm text-center leading-[21px] font-normal">({candidate?.party})</p>
+                                                    <p className="text-[#8F8F8F] whitespace-nowrap text-sm text-center leading-[21px] font-normal">({candidate?.politicalAffiliation})</p>
                                                 </div>
                                                 <div className='w-full'>
                                                     <div className='border-b-[2px] border-[#BEBEBE] lg:mb-6 mb-4'>
                                                         <h1 style={{ borderBottom: `3px solid ${candidate.color}` }} className={`text-[#07254A] w-fit pb-1 font-medium lg:text-[24px] text-[22px] lg:leading-[36px] leading-6 `}>Key Voter Issues</h1>
                                                     </div>
-                                                    <Issue />
+                                                    <Issue issue={candidate?.issues} />
                                                 </div>
                                             </div>
                                         </section>
@@ -316,47 +312,47 @@ const HomeClient = () => {
                     </div>
                     
                     
-                    <section className='lg:w-[20%] w-[100%] sticky lg:top-[15%] top-0 z-10 bg-[white] pt-4 pb-[0px] '>
-            <ConfigProvider
-                theme={{
-                    components: {
-                        Timeline: {
-                            itemPaddingBottom: isMobile ? 0 : 50,
-                            algorithm: true, 
-                        },
-                    },
-                }}
-            >
-                <Timeline 
-                // @ts-ignore
-                    mode={isMobile ? 'bottom' : 'left'}
-                    className={`flex ${isMobile ? 'flex-wrap gap-4 ' : 'lg:flex-col'}`}
-                >
-                    {candidates?.map((person: ICandidateProps, indexItem: number) => (
-                        <Timeline.Item
-                            key={indexItem}
-                            dot={
-                                <div
-                                    onClick={() => handleScrollToSection(indexItem, person.color)}
-                                    style={{
-                                        background: activeIndex === indexItem ? person.color : "#525252",
-                                    }}
-                                    className={`w-3 h-3 cursor-pointer rounded-full`}
-                                />
-                            }
+                    <section className='lg:w-[20%] w-[100%] sticky lg:top-[15%] top-0 z-10 h-full flex items-center justify-center bg-[white] pt-4 pb-[0px] '>
+                        <ConfigProvider
+                            theme={{
+                                components: {
+                                    Timeline: {
+                                        itemPaddingBottom: isMobile ? 0 : 50,
+                                        algorithm: true, 
+                                    },
+                                },
+                            }}
                         >
-                            <p
-                                className={`text-[#525252] ${
-                                    person.color === color ? "font-semibold" : "font-normal"
-                                } transition-all ease-linear duration-150`}
+                            <Timeline 
+                            // @ts-ignore
+                                mode={isMobile ? 'bottom' : 'left'}
+                                className={`flex ${isMobile ? 'flex-wrap gap-4 ' : 'lg:flex-col'}`}
                             >
-                                {person.name}
-                            </p>
-                        </Timeline.Item>
-                    ))}
-                </Timeline>
-            </ConfigProvider>
-        </section>
+                                {candidates?.data?.map((person: ICandidateProps, indexItem: number) => (
+                                    <Timeline.Item
+                                        key={indexItem}
+                                        dot={
+                                            <div
+                                                onClick={() => handleScrollToSection(indexItem, person.color)}
+                                                style={{
+                                                    background: activeIndex === indexItem ? person.color : "#525252",
+                                                }}
+                                                className={`w-3 h-3 cursor-pointer rounded-full`}
+                                            />
+                                        }
+                                    >
+                                        <p
+                                            className={`text-[#525252] ${
+                                                person.color === color ? "font-semibold" : "font-normal"
+                                            } transition-all ease-linear duration-150`}
+                                        >
+                                            {person.name}
+                                        </p>
+                                    </Timeline.Item>
+                                ))}
+                            </Timeline>
+                        </ConfigProvider>
+                    </section>
 
                     
                 </div> 
