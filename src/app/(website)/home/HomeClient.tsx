@@ -46,7 +46,6 @@ const HomeClient = () => {
     const [state, setState] = useState<string>("")
     const [election, setElection] = useState<string>("");
     const {data: candidates} = useCandidateQuery(undefined)
-    console.log(candidates)
 
     useEffect(()=>{
         if(elections?.data[0] || states?.data[0]){
