@@ -67,12 +67,14 @@ const Navbar = () => {
     return (
         <div className={`bg-primary lg:sticky top-0 z-20 h-20`}>
             <div className='container flex items-center justify-between gap-10'>
-                <Image
+              <Link href={"/"}>
+                  <Image
                         alt='logo'
                         width={220}
                         height={60}
                         src={Logo}
-                    />
+                        />
+                        </Link>
                 <div>
                      {/* Mobile device */}
                     <div className="lg:hidden block "> 

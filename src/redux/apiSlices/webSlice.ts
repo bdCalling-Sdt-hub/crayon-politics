@@ -82,6 +82,14 @@ const webSlice = api.injectEndpoints({
                 }
             }
         }),
+        highLite: builder.query({
+            query: () => {
+                return{
+                    method: "GET",
+                    url: "/news/highlight",
+                }
+            }
+        }),
         newsDetails: builder.query({
             query: (id) => {
                 return{
@@ -144,5 +152,6 @@ export const {
     useSubscribeMutation,
     useFeedbackMutation,
     useIntentMutation,
-    useDonateMutation
+    useDonateMutation,
+    useHighLiteQuery
 } = webSlice;
