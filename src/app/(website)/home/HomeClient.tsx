@@ -45,14 +45,14 @@ const HomeClient = () => {
     const {data: elections} = useElectionQuery(undefined)
     const [state, setState] = useState<string>("")
     const [election, setElection] = useState<string>("");
-    const {data: candidates} = useCandidateQuery(undefined)
+    const {data: candidates} = useCandidateQuery({election: election, state: state})
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         if(elections?.data[0] || states?.data[0]){
             setElection(elections?.data[0]?.name)
             setState(states?.data[0]?.name)
         }
-    }, [elections, states])
+    }, [elections, states]) */
 
 
     useEffect(() => {
@@ -174,7 +174,7 @@ const HomeClient = () => {
                     <div className=' flex items-center'>
                         <div onClick={()=>setOpen(!open)} className='bg-[#F8FFE5] relative cursor-pointer flex items-center gap-1 py-1 px-2 rounded-md'>
                             <GiVote color='#666666' size={24} />
-                            <p className='text-[#666666] text-[16px] leading-6 font-normal'>{election}</p>
+                            <p className='text-[#666666] text-[16px] leading-6 font-normal'>{ election || elections?.data[0]?.name}</p>
 
                             <div ref={electionRef} style={{display: open ? "block" : "none"}} className='absolute top-10 left-0 w-full bg-white shadow-md'>
                                 <ul>
@@ -202,7 +202,7 @@ const HomeClient = () => {
                         <p className='text-[#242424] text-[16px] leading-6 font-normal px-1'>in</p>
                         <div onClick={()=>setLocationOpen(!openLocation)}  className='bg-[#F8FFE5] relative cursor-pointer flex items-center gap-1 py-1 px-2 rounded-md'>
                             <MapPinned color='#666666' size={24} />
-                            <p className='text-[#666666] text-[16px] leading-6 font-normal'>{state}</p>
+                            <p className='text-[#666666] text-[16px] leading-6 font-normal'>{ state || states?.data[0]?.name}</p>
 
                             <div ref={locationRef} style={{display: openLocation ? "block" : "none"}} className='absolute top-10 left-0 w-full bg-white shadow-md'>
                                 <ul>

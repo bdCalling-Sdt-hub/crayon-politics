@@ -51,10 +51,13 @@ const webSlice = api.injectEndpoints({
             }
         }),
         candidate: builder.query({
-            query: () => {
+            query: ({election, state}) => {
+                const params = new URLSearchParams();
+                if(election) params.append("election", election)
+                if(state) params.append("state", state)
                 return{
                     method: "GET",
-                    url: "/candidate",
+                    url: `/candidate?${params.toString()}`,
                 }
             }
         }),
@@ -134,6 +137,15 @@ const webSlice = api.injectEndpoints({
                 }
             }
         }),
+        issue: builder.mutation({
+            query: (data) => {
+                return{
+                    method: "POST",
+                    url: "/voter-issue",
+                    body: data
+                }
+            }
+        }),
     })
 });
 
@@ -153,5 +165,6 @@ export const {
     useFeedbackMutation,
     useIntentMutation,
     useDonateMutation,
-    useHighLiteQuery
+    useHighLiteQuery,
+    useIssueMutation
 } = webSlice;

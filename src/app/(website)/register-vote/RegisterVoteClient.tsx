@@ -9,9 +9,7 @@ const RegisterVoteClient = () => {
     const handleSubmit=(values: any)=>{
         const url =  "https://register.vote.org/?campaign=free-tools&partner=111111"
         // const url = `https://register.vote.org/?campaign=free-tools&partner=111111&state=${encodeURIComponent(state)}`;
-
-        // window.location.href = url;
-        // Open the dynamically constructed URL in a new tab
+        
         window.open(url, '_blank');
     }
 
