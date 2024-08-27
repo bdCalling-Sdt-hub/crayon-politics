@@ -1,14 +1,16 @@
 "use client"
+import { useStateQuery } from '@/redux/apiSlices/webSlice';
 import Heading from '@/ui/shared/Heading';
 import { Button, Form, Select } from 'antd';
 import { ChevronDown } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
 
 const RegisterVoteClient = () => {
+    const {data: states} = useStateQuery(undefined);
+    const [state, setState] = useState("")
 
     const handleSubmit=(values: any)=>{
-        const url =  "https://register.vote.org/?campaign=free-tools&partner=111111"
-        // const url = `https://register.vote.org/?campaign=free-tools&partner=111111&state=${encodeURIComponent(state)}`;
+        const url = `https://register.vote.org/?campaign=free-tools&partner=111111&state=${encodeURIComponent(values?.state)}`;
         
         window.open(url, '_blank');
     }
@@ -29,7 +31,7 @@ const RegisterVoteClient = () => {
                 className='lg:w-[400px] mx-auto mt-20'
             >
                 <Form.Item
-                    name="amount"
+                    name="state"
                     rules={[
                         {
                             required: true,
@@ -48,9 +50,13 @@ const RegisterVoteClient = () => {
                         suffixIcon={<ChevronDown size={24} color='#666666' />}
                         placeholder={<p className='font-normal text-[16px] leading-6 text-[#525252]'>Choose Your State</p>}
                     >
-                        <Select.Option value={"new work2"}>New Work</Select.Option>
-                        <Select.Option value={"new work3"}>New Work</Select.Option>
-                        <Select.Option value={"new work4"}>New Work</Select.Option>
+                        {
+                            states?.data?.map((state:any, index: number)=>{
+                                return(
+                                    <Select.Option key={index} value={state?.name}>{state?.name}</Select.Option>
+                                )
+                            })
+                        }
                     </Select>
                 </Form.Item>
 

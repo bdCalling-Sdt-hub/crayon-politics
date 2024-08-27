@@ -16,12 +16,13 @@ const IssueModal: React.FC<IIssueProps> = ({open, setOpen}) => {
     const [issue, {isLoading}] = useIssueMutation()
     const {data: states} = useStateQuery(undefined);
 
+    
+
 
     const handleSubmit = async (values: any) => {
         const result:any = await issue(values);
         if (result?.data?.success === true) {
             toast.success(result?.data?.message);
-            localStorage.setItem("issue", "true");
             setOpen(false)
         }
 

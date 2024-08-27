@@ -62,9 +62,9 @@ const DonateClient = () => {
 
                     <input 
                         value={selectedAmount} 
-                        type='number'
-                        onChange={(e:any)=> setSelectedAmount(e.target.value)} 
-                        className='w-full  bg-transparent outline-none shadow-none font-medium text-[35px]  leading-[24px] text-[#07254A]'
+                        type='text'
+                        onChange={(e:any)=> setSelectedAmount(parseInt(e.target.value || 0))} 
+                        className='w-[150px] bg-transparent outline-none shadow-none font-medium text-[35px]  leading-[24px] text-[#07254A]'
                     />
                     <Heading name="USD"  style="font-normal text-[28px]  leading-[24px] text-[#5C5C5C]" />
                 </div>

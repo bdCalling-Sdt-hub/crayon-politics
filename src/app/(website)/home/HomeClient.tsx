@@ -265,18 +265,22 @@ const HomeClient = () => {
                 </Link>
                 
                 <div className='flex lg:flex-row flex-col-reverse   items-start justify-between lg:gap-16 gap-6'>
-                    
-                    <div className='lg:w-[80%] w-[100%]'>
-                        <div className='grid grid-cols-1 overflow-y-auto snap-y gap-10'>
+                    <div className='lg:w-[80%] w-[100%] flex items-center justify-center'>
+                        <div className='w-full home grid grid-cols-1 gap-10 lg:h-[calc(100vh-180px)] h-[60vh] overflow-y-auto snap-y snap-mandatory'>
                             {
                                 candidates?.data?.map((candidate: ICandidateProps, index: number) => {
                                     return (
                                         <section 
                                             ref={(el:any) => (sectionRefs.current[index] = el)}
                                             id={`candidate-${index + 1}`} key={index} 
-                                            className="scroll-smooth snap-start snap-always flex items-center justify-center lg:h-[calc(100vh-84px)] h-[60vh] w-full"
+                                            className="scroll-smooth lg:h-[calc(100vh-180px)] h-[60vh] snap-start p-8 flex items-center justify-center w-full"
+                                            
                                         >
-                                            <div className={`w-full flex lg:flex-row flex-col gap-5 lg:gap-10 `}>
+                                            <div className={`w-full flex lg:flex-row flex-col gap-5 lg:gap-10 rounded  p-10`}
+                                                style={{
+                                                    boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
+                                                }}
+                                            >
                                                 <div>
                                                     {
                                                         candidate?.image

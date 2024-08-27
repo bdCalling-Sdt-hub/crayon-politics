@@ -81,7 +81,6 @@ const Payment:React.FC<IPaymentProps> = ({open, setOpen, amount, clientSecret}) 
                 }
             }
         }).catch((error:any)=>{
-            console.log(error)
             toast.error(error.message)
         })
 

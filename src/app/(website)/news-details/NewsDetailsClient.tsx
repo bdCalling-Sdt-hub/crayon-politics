@@ -12,7 +12,6 @@ interface IDetailsProps{
 
 const NewsDetailsClient: React.FC<IDetailsProps> = ({newsId}) => {
     const {data: news} = useNewsDetailsQuery(newsId);
-    console.log(news)
     return (
         <div className="container my-10">
             <div className="w-full h-[456px] relative">

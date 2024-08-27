@@ -146,6 +146,14 @@ const webSlice = api.injectEndpoints({
                 }
             }
         }),
+        issueCheck: builder.query({
+            query: () => {
+                return{
+                    method: "GET",
+                    url: "/voter-issue/is-issue-submit",
+                }
+            }
+        }),
     })
 });
 
@@ -166,5 +174,6 @@ export const {
     useIntentMutation,
     useDonateMutation,
     useHighLiteQuery,
-    useIssueMutation
+    useIssueMutation,
+    useIssueCheckQuery
 } = webSlice;

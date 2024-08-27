@@ -29,8 +29,7 @@ interface INewsProps {
 
 const NewsClient = () => {
     const [page, setPage] = useState<string>("1");
-    const {data: newsList} = useNewsQuery(undefined)
-    console.log(newsList)
+    const {data: newsList} = useNewsQuery(undefined);
     const {data: topNews} = useTopNewsQuery(undefined);
     const {data: highLite} = useHighLiteQuery(undefined);
 
