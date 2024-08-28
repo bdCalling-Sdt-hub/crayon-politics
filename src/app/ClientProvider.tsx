@@ -12,7 +12,7 @@ const ClientProvider = ({children}: {children: ReactNode}) => {
     useEffect(() => {
         const fetchIssueStatus = async () => {
             try {
-                const response = await fetch("http://192.168.10.185:5000/api/v1/voter-issue/is-issue-submit");
+                const response = await fetch("http://143.244.131.216:5000/api/v1/voter-issue/is-issue-submit");
                 const { data } = await response.json();
     
                 if (data === true) {
