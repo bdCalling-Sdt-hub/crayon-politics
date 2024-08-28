@@ -75,7 +75,8 @@ const NewsClient = () => {
                         </div>
                         <div>
                             <h1 className="text-[#242424] text-[24px] lg:text-[32px] font-semibold leading-[36px] lg:leading-[48px]">{topNews?.data?.title}</h1>
-                            <p className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]">{topNews?.data?.description}</p>
+                            <div className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]" dangerouslySetInnerHTML={{ __html: topNews?.data?.description}} />
+                            {/* <p className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]">{topNews?.data?.description}</p> */}
                             <Link
                                 href={`news-details/${topNews?.data?._id}`}
                                 className="flex items-center gap-2 text-[#07254A] font-normal text-[14px] leading-6 underline"
@@ -92,7 +93,7 @@ const NewsClient = () => {
                             <div key={index} className="flex lg:flex-row border flex-col-reverse gap-4 p-4 rounded">
                                 <div className="flex-1">
                                     <h1 className="text-[#242424] text-[20px] lg:text-[24px] font-semibold leading-[30px] lg:leading-[36px]">{news?.title}</h1>
-                                    <p className="text-[#5C5C5C] text-[14px] lg:text-[16px] my-2 lg:my-[6px] font-normal leading-[21px] lg:leading-[24px]">{news?.description}</p>
+                                    <div className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]" dangerouslySetInnerHTML={{ __html: topNews?.data?.description}} />
                                     <Link
                                         href={`news-details/${news?._id}`}
                                         className="flex items-center gap-2 text-[#07254A] font-medium text-[14px] leading-6 underline"
@@ -126,7 +127,8 @@ const NewsClient = () => {
                         <div key={index} className="flex lg:flex-row flex-col-reverse gap-4 border mb-4  p-4 rounded">
                             <div className="flex-1">
                                 <h1 className="text-[#242424] text-[16px] font-semibold leading-6">{news?.title}</h1>
-                                <p className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]">{news?.description}</p>
+                                {/* <p className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]">{news?.description}</p> */}
+                                <div className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]" dangerouslySetInnerHTML={{ __html: news?.description as string}} />
                                 <Link
                                     href={`news-details/${news._id}`}
                                     className="flex items-center gap-2 text-[#07254A] font-medium text-[14px] leading-6 underline"

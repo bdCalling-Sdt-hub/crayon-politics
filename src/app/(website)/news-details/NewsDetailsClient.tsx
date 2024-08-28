@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Details from "@/assets/news2.png";
 import Heading from "@/ui/shared/Heading";
 import { useNewsDetailsQuery } from "@/redux/apiSlices/webSlice";
 import { imageUrl } from "@/redux/api/baseApi";

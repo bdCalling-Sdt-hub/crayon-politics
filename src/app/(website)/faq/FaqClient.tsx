@@ -8,6 +8,7 @@ import { useFaqQuery } from '@/redux/apiSlices/webSlice';
 const FaqClient: React.FC = () => {
     const [page, setPage] = useState<string>("1");
     const {data: faqs} = useFaqQuery(undefined);
+    console.log(faqs);
     
     const getItems = (panelStyle:any) => faqs?.data?.map((item:any, index:number)=>{
         return{
@@ -66,7 +67,7 @@ const FaqClient: React.FC = () => {
                     itemRender={itemRender} 
                     current={parseInt(page)} 
                     onChange={(page)=> setPage(page.toString())}
-                    total={50}
+                    total={faqs?.pagination?.total}
                 />
             </div>
         </div>

@@ -13,7 +13,7 @@ const Issue: React.FC<IIssueProps> = ({issue}) => {
         return{
             key: index + 1,
             label: <p className=' text-[#525252] '>{item?.question} </p>,
-            children: <p>{item?.answer}</p>,
+            children: <div dangerouslySetInnerHTML={{ __html: item?.answer}} />,
             style: panelStyle,
         }
     })
