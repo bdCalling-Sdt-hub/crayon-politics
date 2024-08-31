@@ -51,6 +51,7 @@ const Payment:React.FC<IPaymentProps> = ({open, setOpen, amount, clientSecret}) 
     const handleSubmit = async () => {
 
         if (!stripe || !elements || !clientSecret) {
+            return;
         }
 
         const cardElement = elements?.getElement(CardNumberElement);

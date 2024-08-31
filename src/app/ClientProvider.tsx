@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { Provider } from 'react-redux';
 import store from "@/redux/store";
 import IssueModal from '@/ui/IssueModal';
+import { imageUrl } from '@/redux/api/baseApi';
 
 const ClientProvider = ({children}: {children: ReactNode}) => {
     
@@ -12,7 +13,7 @@ const ClientProvider = ({children}: {children: ReactNode}) => {
     useEffect(() => {
         const fetchIssueStatus = async () => {
             try {
-                const response = await fetch("http://143.244.131.216:5000/api/v1/voter-issue/is-issue-submit");
+                const response = await fetch(`${imageUrl}/api/v1/voter-issue/is-issue-submit`);
                 const { data } = await response.json();
     
                 if (data === true) {
