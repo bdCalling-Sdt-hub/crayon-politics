@@ -16,7 +16,7 @@ const Modal:React.FC<IModalProps> = ({title, open, setOpen, body, width}) => {
     }
     return (
         <AntModal
-            title={title}
+            title={<p className='heading'>{title}</p>}
             footer={false}
             open={open}
             onCancel={handleClose}
