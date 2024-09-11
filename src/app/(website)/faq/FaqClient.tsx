@@ -44,7 +44,7 @@ const FaqClient: React.FC = () => {
 
             <Heading 
                 name="Frequently Asked Questions" 
-                style="font-normal w-fit text-[32px] border-b-[4px] mx-auto pb-3 border-[#9C1E2E] leading-[48px] text-[#3E3E3E] mb-6" 
+                style="font-normal heading w-fit text-[32px] border-b-[4px] mx-auto pb-3 border-[#9C1E2E] leading-[48px] text-[#3E3E3E] mb-6" 
             />
 
             <p className='text-[14px] text-[#525252] text-center leading-[18px] font-normal mb-10'> <span className='text-[#07254A]'>Crayon</span> <span className='text-[#FF9773]'>Politics</span> is an Quis urna. tempor consectetur risus quis dui. Ut leo. malesuada gravida eget ex. viverra Nunc Nunc dignissim, convallis.</p>

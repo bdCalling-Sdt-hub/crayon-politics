@@ -19,7 +19,7 @@ const RegisterVoteClient = () => {
         <div className='container py-10 h-[65.2vh]'>
 
             {/* heading  */}
-            <Heading name="Register to Vote"  style="font-normal w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
+            <Heading name="Register to Vote"  style="font-normal heading w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
 
             <p className='lg:w-[80%] w-[100%] text-justify font-normal text-[16px] leading-6 text-[#525252]'>
                 Vote.org fights for voters in every state, in every way possible. There is no other organization engaging in this work on every front, on every level: serving individual voters, creatively building tech and partnerships and programs to reach underserved voters, and fighting harmful voter suppression laws in the courts.

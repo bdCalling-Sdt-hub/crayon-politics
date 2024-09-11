@@ -43,7 +43,7 @@ const DonateClient = () => {
 
             {/* heading  */}
            <div className='px-0   md:px-24'>
-           <Heading name="Defend Our Democracy and Donate Today"  style="font-normal   w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
+           <Heading name="Defend Our Democracy and Donate Today"  style="font-normal heading  w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
 
                 <p className='font-normal text-[16px] text-justify leading-6 text-[#525252]'>
                     Vote.org fights for voters in every state, in every way possible. There is no other organization engaging in this work on every front, on every level: serving individual voters, creatively building tech and partnerships and programs to reach underserved voters, and fighting harmful voter suppression laws in the courts.
@@ -57,7 +57,7 @@ const DonateClient = () => {
            </div>
 
             <div className='lg:mt-10 mt-5 bg-primary lg:w-[40%] w-[100%]  mx-auto rounded-lg p-6 '>
-                <Heading name="Your donation"  style="font-medium text-[32px]  leading-[24px] text-[#242424] mb-8 lg:text-start text-center " />
+                <Heading name="Your donation"  style="font-medium heading text-[32px]  leading-[24px] text-[#242424] mb-8 lg:text-start text-center " />
                 <div className='flex items-center lg:justify-between justify-center border-b-[3px] pb-4 border-dashed border-[#D0D0D0]'>
 
                     <input 
@@ -66,7 +66,7 @@ const DonateClient = () => {
                         onChange={(e:any)=> setSelectedAmount(parseInt(e.target.value || 0))} 
                         className='w-[150px] bg-transparent outline-none shadow-none font-medium text-[35px]  leading-[24px] text-[#07254A]'
                     />
-                    <Heading name="USD"  style="font-normal text-[28px]  leading-[24px] text-[#5C5C5C]" />
+                    <Heading name="USD"  style="font-normal heading text-[28px]  leading-[24px] text-[#5C5C5C]" />
                 </div>
 
                 <Form onFinish={handleSubmit} form={form}>

@@ -9,6 +9,10 @@ import Modal from './Modal';
 import { Button, Form, Input } from 'antd';
 import { useFeedbackMutation } from '@/redux/apiSlices/webSlice';
 import toast from 'react-hot-toast';
+import { Instagram, X } from 'lucide-react';
+import { FaInstagram, FaMusic, FaTiktok, FaTwitter, FaXTwitter } from 'react-icons/fa6';
+import { FiX } from 'react-icons/fi';
+import GoogleAds from '../GoogleAds';
 
 interface IRoute{
     label : string;
@@ -40,6 +44,29 @@ const Footer:React.FC = () => {
         }
     ]
 
+    const socialMedia = [
+        {
+            icon: <FaInstagram color="white" size={30} />,
+            link: "https://www.instagram.com/crayon.politics/",
+            background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)"
+        },
+        {
+            icon: <FaXTwitter color="white" size={30} />,
+            link: "https://x.com/crayonpoliticsx",
+            background: "#000000"
+        },{
+            icon: <FaTiktok size={30}
+                style={{ 
+                color: 'white', 
+                filter: `drop-shadow(2px 2px 0px #EE1D52) drop-shadow(-2px -2px 0px #69C9D0)` 
+                }}
+            />,
+            link: "https://www.tiktok.com/@crayon.politics?_t=8pV6im59XAd&_r=1",
+            background: '#010101', 
+        },
+
+    ]
+
     const handleSubmit=async(values:any)=>{
         try {
             await feedback({content: values?.content}).then((response:any)=>{
@@ -54,7 +81,7 @@ const Footer:React.FC = () => {
     }
     return (
         <div className='bg-[#07254A]'>
-
+            <GoogleAds/>
             <div className='container flex lg:flex-row flex-col items-center justify-between pt-20'>
                 <div className='flex items-center justify-center lg:gap-10 gap-4'>
                     {
@@ -73,32 +100,19 @@ const Footer:React.FC = () => {
                 </div>
 
                 <div className='flex items-center gap-7 mt-3 lg:mt-0' >
-                    <a href="https://www.facebook.com/" target='_blank'>
-                        <Image
-                            alt='social-link'
-                            src={tiktok}
-                            width={32}
-                            height={32}
-                        />
-                    </a>
-
-                    <a href='https://www.instagram.com/' target='_blank'>
-                        <Image
-                            alt='social-link'
-                            src={instagram}
-                            width={32}
-                            height={32}
-                        />
-                    </a>
-
-                    <a href='https://www.twitter.com/' target='_blank'>
-                        <Image
-                            alt='social-link'
-                            src={twitter}
-                            width={32}
-                            height={32}
-                        />
-                    </a>
+                    {
+                        socialMedia?.map((item, index)=>{
+                            return(
+                                <div key={index} className='rounded-lg p-1' style={{background: item?.background}}>
+                                    <a className='heading' href={item?.link}>
+                                        <p className='heading'>
+                                            {item?.icon}
+                                        </p>
+                                    </a>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
 
@@ -109,7 +123,7 @@ const Footer:React.FC = () => {
             </div>
 
             <Modal
-                title='Put Your Feedback'
+                title={<p className='heading'>Put Your Feedback</p>}
                 setOpen={setOpen}
                 open={open}
                 body={<div>

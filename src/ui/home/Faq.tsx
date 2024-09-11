@@ -29,7 +29,7 @@ const Faq: React.FC = () => {
         <div className='container mb-11'>
             <Heading 
                 name="Frequently Asked Questions" 
-                style="font-normal w-fit lg:text-[32px] text-[28px] border-b-[4px] mx-auto lg:pb-3 border-[#9C1E2E] leading-[48px] text-[#3E3E3E] lg:mb-10 mb-6" 
+                style="font-normal heading w-fit lg:text-[32px] text-[28px] border-b-[4px] mx-auto lg:pb-3 border-[#9C1E2E] leading-[48px] text-[#3E3E3E] lg:mb-10 mb-6" 
             />
 
             <Collapse
@@ -44,7 +44,7 @@ const Faq: React.FC = () => {
                 items={getItems(panelStyle)}
             />
             <div className='flex items-end justify-end'>
-                <Link href={"/faq"} className='flex items-center gap-1 underline text-[#9C1E2E] text-[14px] font-normal'>View More <MdOutlineArrowOutward/></Link>
+                <Link href={"/faq"} className='flex heading items-center gap-1 underline text-[#9C1E2E] text-[14px] font-normal'>View More <MdOutlineArrowOutward/></Link>
             </div>
         </div>
     )

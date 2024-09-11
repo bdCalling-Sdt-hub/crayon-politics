@@ -42,11 +42,14 @@ const Navbar = () => {
           label: (
             <Link
               href={value.path}
-              className={`  ${path === value.path ? "text-[#07254A] font-medium border-b-[2px] border-[#07254A]" : "text-[#666666] border-b-[2px] border-transparent"} 
+              className={` navbar  ${path === value.path ? "text-[#07254A] font-medium border-b-[2px] border-[#07254A]" : "text-[#666666] border-b-[2px] border-transparent"} 
                 transition-all duration-150  text-[16px] font-normal mt-[6px] pb-[2px]
             `}
             >
+              <p className='navbar'>
+
               {value.label}
+              </p>
             </Link>
           ),
         })),
@@ -92,7 +95,9 @@ const Navbar = () => {
                                         transition-all duration-150  text-[16px] leading-6 font-normal mt-[26px] pb-[26px]
                                     `}
                                 >
+                                  <p className='navbar'>
                                     {route.label}
+                                  </p>
                                 </Link>
                             )
                         })

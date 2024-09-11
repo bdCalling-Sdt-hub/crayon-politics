@@ -50,7 +50,7 @@ const NewsClient = () => {
             {/* Heading */}
             <Heading
                 name="Today's Top Events"
-                style="font-normal lg:w-fit w-full text-[24px] lg:text-[32px] border-b-[4px] pb-3 border-[#9C1E2E] leading-[36px] lg:leading-[48px] text-[#3E3E3E] mb-6"
+                style="font-normal lg:w-fit heading w-full text-[24px] lg:text-[32px] border-b-[4px] pb-3 border-[#9C1E2E] leading-[36px] lg:leading-[48px] text-[#3E3E3E] mb-6"
             />
 
             {/* News Container */}
@@ -74,7 +74,7 @@ const NewsClient = () => {
                             }
                         </div>
                         <div>
-                            <h1 className="text-[#242424] text-[24px] lg:text-[32px] font-semibold leading-[36px] lg:leading-[48px]">{topNews?.data?.title}</h1>
+                            <h1 className="text-[#242424] heading text-[24px] lg:text-[32px] font-semibold leading-[36px] lg:leading-[48px]">{topNews?.data?.title}</h1>
                             <div className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]" dangerouslySetInnerHTML={{ __html: topNews?.data?.description}} />
                             {/* <p className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]">{topNews?.data?.description}</p> */}
                             <Link
@@ -92,7 +92,7 @@ const NewsClient = () => {
                         {newsList?.data?.map((news: INewsProps, index: number) => (
                             <div key={index} className="flex lg:flex-row border flex-col-reverse gap-4 p-4 rounded">
                                 <div className="flex-1">
-                                    <h1 className="text-[#242424] text-[20px] lg:text-[24px] font-semibold leading-[30px] lg:leading-[36px]">{news?.title}</h1>
+                                    <h1 className="text-[#242424] heading text-[20px] lg:text-[24px] font-semibold leading-[30px] lg:leading-[36px]">{news?.title}</h1>
                                     <div className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]" dangerouslySetInnerHTML={{ __html: topNews?.data?.description}} />
                                     <Link
                                         href={`news-details/${news?._id}`}
@@ -126,7 +126,7 @@ const NewsClient = () => {
                     {highLite?.data?.map((news: INewsProps, index: number) => (
                         <div key={index} className="flex lg:flex-row flex-col-reverse gap-4 border mb-4  p-4 rounded">
                             <div className="flex-1">
-                                <h1 className="text-[#242424] text-[16px] font-semibold leading-6">{news?.title}</h1>
+                                <h1 className="text-[#242424] text-[16px] heading font-semibold leading-6">{news?.title}</h1>
                                 {/* <p className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]">{news?.description}</p> */}
                                 <div className="text-[#5C5C5C] my-2 text-[14px] font-normal leading-[21px]" dangerouslySetInnerHTML={{ __html: news?.description as string}} />
                                 <Link

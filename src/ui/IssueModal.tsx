@@ -34,7 +34,7 @@ const IssueModal: React.FC<IIssueProps> = ({open, setOpen}) => {
     return (
         <div>
             <Modal
-                title={<p className='text-2xl -mt-2'>Help us understand you better</p>}
+                title={<p className='text-[20px] sm:text-2xl -mt-2'>Help us understand you better</p>}
                 open={open}
                 onClose={()=>setOpen(false)}
                 onCancel={()=>setOpen(false)}
@@ -58,7 +58,7 @@ const IssueModal: React.FC<IIssueProps> = ({open, setOpen}) => {
                             name="state"
                             rules={[{ required: true, message: "Please Select Any State!" }]}
                             style={{ marginBottom: 0 }}
-                            className="col-span-6"
+                            className="col-span-12 sm:col-span-6"
                             label={<p>State</p>}
                         >
                             <Select
@@ -90,7 +90,7 @@ const IssueModal: React.FC<IIssueProps> = ({open, setOpen}) => {
                                 }
                             ]}
                             style={{ marginBottom: 0 }}
-                            className='col-span-6'
+                            className='col-span-12 sm:col-span-6'
                             label={<p>Date of Birth</p>}
                             valuePropName='dateOfBirth'
                             getValueFromEvent={(value: any) => value.format("YYYY-MM-DD")}

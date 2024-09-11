@@ -1,14 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
-import candidate1 from "@/assets/joe biden.png";
-import candidate2 from "@/assets/robert Kennedy jr.png";
-import candidate3 from "@/assets/Chose Oliver.png";
-import candidate4 from "@/assets/Jason Palmer.png";
-import candidate5 from "@/assets/Laby Gaga.png";
-import candidate6 from "@/assets/Donald Trump.png";
-import candidate7 from "@/assets/Cenk Uygur.png";
-import candidate8 from "@/assets/Cornel West.png";
-import candidate9 from "@/assets/Marianne Williamson.png";
 import Image, { StaticImageData } from 'next/image';
 import { MapPinned } from 'lucide-react';
 import { GiVote } from 'react-icons/gi';
@@ -21,7 +12,6 @@ import Faq from '@/ui/home/Faq';
 import LearnAboutElection from '@/ui/home/LearnAboutElection';
 import { useCandidateQuery, useElectionQuery, useStateQuery } from '@/redux/apiSlices/webSlice';
 import { imageUrl } from '@/redux/api/baseApi';
-// import CandidateSlider from '@/ui/home/CandidateSlider';
 
 
 interface ICandidateProps{
@@ -184,13 +174,15 @@ const HomeClient = () => {
                                                 <li 
                                                     key={index}
                                                     onClick={()=>setElection(item?.name)}  
-                                                    className='
+                                                    className=' heading
                                                         border-b-[1px] text-[16px] text-[#5c5c5c] 
                                                         leading-[18px] font-normal py-[11px] px-4 
                                                         border-[#DDDDDD]
                                                     '
                                                 >
-                                                    {item?.name}
+                                                    <p className='heading'>
+                                                        {item?.name}
+                                                    </p>
                                                 </li>
                                             )
                                         })
@@ -218,7 +210,9 @@ const HomeClient = () => {
                                                         py-[11px] px-4 border-[#DDDDDD]
                                                     '
                                                 >
-                                                    {item?.name}
+                                                    <p className='heading'>
+                                                        {item?.name}
+                                                    </p>
                                                 </li>
                                             )
                                         })
@@ -252,7 +246,7 @@ const HomeClient = () => {
                                                 }}
                                             />
                                         }
-                                        <p className='text-[#242424] text-[16px] text-center leading-6 mt-4 font-normal'>{candidate.name}</p>
+                                        <p className='text-[#242424] heading text-[16px] text-center leading-6 mt-4 font-medium'>{candidate.name}</p>
                                     </div>
                                 </Link>
                             )
@@ -266,14 +260,14 @@ const HomeClient = () => {
                 
                 <div className='flex lg:flex-row flex-col-reverse   items-start justify-between lg:gap-16 gap-6'>
                     <div className='lg:w-[80%] w-[100%] flex items-center justify-center'>
-                        <div className='w-full home grid grid-cols-1 gap-10 lg:h-[calc(100vh-180px)] h-[60vh] overflow-y-auto snap-y snap-mandatory'>
+                        <div className='w-full py-6 home grid grid-cols-1 gap-10 lg:h-[calc(100vh-180px)] h-[60vh] overflow-y-auto snap-y snap-mandatory'>
                             {
                                 candidates?.data?.map((candidate: ICandidateProps, index: number) => {
                                     return (
                                         <section 
                                             ref={(el:any) => (sectionRefs.current[index] = el)}
                                             id={`candidate-${index + 1}`} key={index} 
-                                            className="scroll-smooth lg:h-[calc(100vh-180px)] h-[60vh] snap-start p-8 flex items-center justify-center w-full"
+                                            className="scroll-smooth lg:h-[calc(100vh-180px)] mt-4 h-[60vh] snap-start p-8 flex items-center justify-center w-full"
                                             
                                         >
                                             <div className={`w-full flex lg:flex-row flex-col gap-5 lg:gap-10 rounded  p-10`}
@@ -297,12 +291,12 @@ const HomeClient = () => {
                                                             }}
                                                         />
                                                     }
-                                                    <p className='text-center lg:px-0 px-4 text-[#07254A] whitespace-nowrap lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
+                                                    <p className='heading text-center lg:px-0 px-4 text-[#07254A] whitespace-nowrap lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
                                                     <p className="text-[#8F8F8F] whitespace-nowrap text-sm text-center leading-[21px] font-normal">({candidate?.politicalAffiliation})</p>
                                                 </div>
                                                 <div className='w-full'>
                                                     <div className='border-b-[2px] border-[#BEBEBE] lg:mb-6 mb-4'>
-                                                        <h1 style={{ borderBottom: `3px solid ${candidate.color}` }} className={`text-[#07254A] w-fit pb-1 font-medium lg:text-[24px] text-[22px] lg:leading-[36px] leading-6 `}>Key Voter Issues</h1>
+                                                        <h1 style={{ borderBottom: `3px solid ${candidate.color}` }} className={`heading text-[#07254A] w-fit pb-1 font-medium lg:text-[24px] text-[22px] lg:leading-[36px] leading-6 `}>Key Voter Issues</h1>
                                                     </div>
                                                     <Issue issue={candidate?.issues} />
                                                 </div>
@@ -315,7 +309,7 @@ const HomeClient = () => {
                     </div>
                     
                     
-                    <section className='lg:w-[20%] w-[100%] sticky lg:top-[15%] top-0 z-10 h-full flex items-center justify-center bg-[white] pt-4 pb-[0px] '>
+                    <section className='lg:w-[20%] hidden w-[100%] sticky lg:top-[15%] top-0 z-10 h-full md:flex items-center justify-center bg-[white] pt-4 pb-[0px] '>
                         <ConfigProvider
                             theme={{
                                 components: {
@@ -345,7 +339,7 @@ const HomeClient = () => {
                                         }
                                     >
                                         <p
-                                            className={`text-[#525252] ${
+                                            className={`text-[#525252] heading ${
                                                 person.color === color ? "font-semibold" : "font-normal"
                                             } transition-all ease-linear duration-150`}
                                         >
@@ -361,15 +355,7 @@ const HomeClient = () => {
                 </div> 
 
 
-                <BackTop>
-                    <div
-                        className={`fixed bottom-10 right-10 transition-all duration-300 transform ${
-                            showBackTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-                        } bg-[#FF7072] w-10 h-10 rounded-full flex items-center justify-center text-black`}
-                    >
-                        <FaArrowUpLong color='white' size={20} />
-                    </div>
-                </BackTop>
+                
             </div>
 
             <LearnAboutElection/>
