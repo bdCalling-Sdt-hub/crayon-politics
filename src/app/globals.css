@@ -185,3 +185,17 @@ html{
   .zoom-out {
     transform: scale(0.5); /* adjust the scale value to your liking */
   }
+
+.custom-modal .ant-modal{
+    top: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: 100% !important;
+}
+
+.custom-modal .ant-modal .ant-modal-content {
+    padding: 0 !important;
+}
+
+ .ant-modal-root .ant-modal {
+    margin: 0 auto !important;
+}

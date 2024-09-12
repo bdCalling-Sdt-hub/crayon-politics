@@ -14,7 +14,6 @@ const Banner = () => {
             className='absolute left-0 top-0 z-50'
         >
             <div className='bg-black bg-opacity-[25%] w-full h-full flex items-center justify-center'>
-
                 <h1 className='text-[#ffffff] playfair-display  text-[25px] sm:text-[68px] font-normal'>Politics Made Simple</h1>
             </div>
         </div>
