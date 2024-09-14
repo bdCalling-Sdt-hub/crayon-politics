@@ -25,24 +25,31 @@ interface ICandidateProps{
 
 
 const HomeClient = () => {
+    const [limit, setLimit] = useState(10)
     const [openLocation, setLocationOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const electionRef = useRef<HTMLDivElement | null>(null);
     const locationRef = useRef<HTMLDivElement | null>(null);
     const [Index, setIndex] = useState(0) 
     const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 1024);
-    const {data: states} = useStateQuery(undefined)
+    const {data: states} = useStateQuery(limit);
     const {data: elections} = useElectionQuery(undefined)
     const [state, setState] = useState<string>("")
     const [election, setElection] = useState<string>("");
     const {data: candidates} = useCandidateQuery({election: election, state: state})
 
-    /* useEffect(()=>{
+    useEffect(()=>{
+        if(states){
+            setLimit(states?.pagination?.total)
+        }
+    }, [states])
+
+    useEffect(()=>{
         if(elections?.data[0] || states?.data[0]){
             setElection(elections?.data[0]?.name)
             setState(states?.data[0]?.name)
         }
-    }, [elections, states]) */
+    }, [elections, states])
 
 
     useEffect(() => {
@@ -196,7 +203,11 @@ const HomeClient = () => {
                             <MapPinned color='#666666' size={24} />
                             <p className='text-[#666666] text-[16px] leading-6 font-normal'>{ state || states?.data[0]?.name}</p>
 
-                            <div ref={locationRef} style={{display: openLocation ? "block" : "none"}} className='absolute top-10 left-0 w-full bg-white shadow-md'>
+                            <div 
+                                ref={locationRef} 
+                                style={{display: openLocation ? "block" : "none"}} 
+                                className='absolute overflow-y-auto h-[410px] top-10 left-0 w-fit bg-white shadow-md'
+                            >
                                 <ul>
                                     {
                                         states?.data?.map((item: any, index:number)=>{
@@ -210,7 +221,7 @@ const HomeClient = () => {
                                                         py-[11px] px-4 border-[#DDDDDD]
                                                     '
                                                 >
-                                                    <p className='heading'>
+                                                    <p className='heading whitespace-nowrap'>
                                                         {item?.name}
                                                     </p>
                                                 </li>

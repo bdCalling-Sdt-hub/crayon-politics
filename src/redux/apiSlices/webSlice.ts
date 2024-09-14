@@ -3,10 +3,10 @@ import { api } from "../api/baseApi";
 const webSlice = api.injectEndpoints({
     endpoints: (builder) => ({
         state: builder.query({
-            query: () => {
+            query: (value) => {
                 return{
                     method: "GET",
-                    url: "/state",
+                    url: `/state?limit=${value}`,
                 }
             }
         }),

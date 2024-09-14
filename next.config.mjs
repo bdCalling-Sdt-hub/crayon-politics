@@ -22,6 +22,11 @@ const nextConfig = {
                 hostname: '143.244.131.216',
                 pathname: '**',
             },
+            {
+                protocol: 'https',
+                hostname: 'api.crayonpolitics.org',
+                pathname: '**',
+            },
         ],
     },
 };
