@@ -49,13 +49,13 @@ const ClientProvider = ({children}: {children: ReactNode}) => {
         };
     }, [openBanner]);
 
-    /* useEffect(() => {
+    useEffect(() => {
         const timer = setTimeout(() => {
             setOpenBanner(false);
         }, 10000);
 
         return () => clearTimeout(timer);
-    }, []); */
+    }, []);
 
     return (
         <Provider store={store}>

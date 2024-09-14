@@ -123,7 +123,7 @@ const Footer:React.FC = () => {
             </div>
 
             <Modal
-                title="Feedback<"
+                title="Feedback"
                 setOpen={setOpen}
                 open={open}
                 body={<div>
