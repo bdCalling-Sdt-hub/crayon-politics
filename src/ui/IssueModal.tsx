@@ -86,17 +86,17 @@ const IssueModal: React.FC<IIssueProps> = ({open, setOpen}) => {
                             rules={[
                                 {
                                     required: true,
-                                    message: "Please Pick Date of Birth",
+                                    message: "Please Pick age",
                                 }
                             ]}
                             style={{ marginBottom: 0 }}
                             className='col-span-12 sm:col-span-6'
-                            label={<p>Date of Birth</p>}
+                            label={<p>Age</p>}
                             valuePropName='dateOfBirth'
                             getValueFromEvent={(value: any) => value.format("YYYY-MM-DD")}
                         >
                             <DatePicker
-                                placeholder="Date of Birth"
+                                placeholder="Age"
                                 style={{ height: 40, width: "100%" }}
                                 format={"YYYY-MM-DD"}
                                 suffixIcon={<CiCalendarDate size={24} color='#666666' />}

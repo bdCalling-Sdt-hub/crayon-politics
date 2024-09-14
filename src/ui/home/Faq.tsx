@@ -9,7 +9,7 @@ import { useFaqQuery } from '@/redux/apiSlices/webSlice';
 const Faq: React.FC = () => {
     const {data: faqs} = useFaqQuery(undefined);
     
-    const getItems = (panelStyle:any) => faqs?.data?.slice(0, 4)?.map((item:any, index:number)=>{
+    const getItems = (panelStyle:any) => faqs?.data?.slice(0, 6)?.map((item:any, index:number)=>{
         return{
             key: index + 1,
             label: <p className=' text-[#525252] '>{item?.question} </p>,
@@ -43,9 +43,6 @@ const Faq: React.FC = () => {
                 style={{background: token.colorBgContainer}}
                 items={getItems(panelStyle)}
             />
-            <div className='flex items-end justify-end'>
-                <Link href={"/faq"} className='flex heading items-center gap-1 underline text-[#9C1E2E] text-[14px] font-normal'>View More <MdOutlineArrowOutward/></Link>
-            </div>
         </div>
     )
 }
