@@ -306,7 +306,7 @@ const HomeClient = () => {
                                                         />
                                                     }
                                                     <p className='heading text-center lg:px-0 px-4 text-[#07254A] whitespace-nowrap lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
-                                                    <p className=" whitespace-nowrap text-sm text-center leading-[21px] font-normal">({candidate?.about})</p>
+                                                    <p className=" whitespace-nowrap text-sm text-center leading-[21px] font-normal">{candidate?.about}</p>
                                                 </div>
                                                 <div className='w-full'>
                                                     <div className='border-b-[2px] border-[#BEBEBE] lg:mb-6 mb-4'>
@@ -323,7 +323,7 @@ const HomeClient = () => {
                     </div>
                     
                     
-                    <section className='lg:w-[20%] hidden w-[100%] sticky lg:top-[15%] top-0 z-10 h-full md:flex items-center justify-center bg-[white] pt-4 pb-[0px] '>
+                    <section className='lg:w-[20%] hidden w-[100%] sticky lg:top-[15%] top-0 z-10 h-full md:flex items-center justify-center my-auto bg-[white] pt-4 pb-[0px] '>
                         <ConfigProvider
                             theme={{
                                 components: {
@@ -374,7 +374,7 @@ const HomeClient = () => {
 
             <LearnAboutElection/>
             <Faq/>
-            <NewsLetter/>
+            {/* <NewsLetter/> */}
         </>
     )
 }

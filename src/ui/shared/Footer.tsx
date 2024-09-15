@@ -10,6 +10,7 @@ import { FaTiktok, FaXTwitter } from 'react-icons/fa6';
 import GoogleAds from '../GoogleAds';
 import Image from 'next/image';
 import Logo from "@/assets/logo.png";
+import NewsLetter from '../home/NewsLetter';
 
 interface IRoute{
     label : string;
@@ -90,6 +91,8 @@ const Footer:React.FC = () => {
                 </div>
             </div>
 
+            
+
             <div className='container flex lg:flex-row flex-col items-center justify-between pt-10'>
                 <div className='flex-1 flex items-center justify-center lg:gap-10 gap-4'>
                     {
@@ -107,6 +110,7 @@ const Footer:React.FC = () => {
                     }
                     <p onClick={()=>setOpen(true)} className='text-white container text-[16px] leading-6 font-normal cursor-pointer text-center lg:text-start'>Let us know what you think</p>
                 </div>
+                <NewsLetter/> 
             </div>
             <p className='container text-white mt-6 pb-20'>© All rights reserved by Crayon Politics</p>
 

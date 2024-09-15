@@ -16,13 +16,13 @@ const RegisterVoteClient = () => {
     }
 
     return (
-        <div className='container py-10 h-[65.2vh]'>
+        <div className='container pb-10'>
 
             {/* heading  */}
             <Heading name="Register to Vote"  style="font-normal heading w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
 
             <p className='lg:w-[80%] w-[100%] text-justify font-normal text-[16px] leading-6 text-[#525252]'>
-                Registering to vote is the first step to ensuring your voice is heard this election. Register right now with our tool powered by vote.or
+                Registering to vote is the first step to ensuring your voice is heard this election. Register right now with our tool powered by vote.org
             </p>
 
             <Form 

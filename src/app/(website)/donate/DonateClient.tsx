@@ -38,10 +38,10 @@ const DonateClient = () => {
         
     }
     return (
-        <div className='container py-10'>
+        <div className='container'>
 
             {/* heading  */}
-           <div className='px-0   md:px-24'>
+           <div className='px-0'>
            <Heading name="Defend Our Democracy and Donate Today"  style="font-normal heading  w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
 
                 <p className='font-normal text-[16px] text-justify leading-6 text-[#525252]'>
