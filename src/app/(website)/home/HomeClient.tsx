@@ -16,6 +16,7 @@ import { imageUrl } from '@/redux/api/baseApi';
 
 interface ICandidateProps{
     name: string;
+    about: string;
     image: StaticImageData,
     color: string,
     politicalAffiliation?: string;
@@ -37,6 +38,7 @@ const HomeClient = () => {
     const [state, setState] = useState<string>("")
     const [election, setElection] = useState<string>("");
     const {data: candidates} = useCandidateQuery({election: election, state: state})
+    console.log(candidates)
 
     useEffect(()=>{
         if(states){
@@ -144,7 +146,7 @@ const HomeClient = () => {
         });
 
         return () => {
-            sectionRefs.current.forEach((ref) => {
+            sectionRefs?.current?.forEach((ref) => {
                 if (ref) observer.unobserve(ref);
             });
         };
@@ -296,6 +298,7 @@ const HomeClient = () => {
                                                             height={150}
                                                             src={`${imageUrl}${candidate.image}`}
                                                             style={{
+                                                                margin: "0 auto",
                                                                 borderRadius: "100%",
                                                                 borderWidth: 3,
                                                                 borderColor: candidate.color
@@ -303,7 +306,7 @@ const HomeClient = () => {
                                                         />
                                                     }
                                                     <p className='heading text-center lg:px-0 px-4 text-[#07254A] whitespace-nowrap lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
-                                                    <p className="text-[#8F8F8F] whitespace-nowrap text-sm text-center leading-[21px] font-normal">({candidate?.politicalAffiliation})</p>
+                                                    <p className=" whitespace-nowrap text-sm text-center leading-[21px] font-normal">({candidate?.about})</p>
                                                 </div>
                                                 <div className='w-full'>
                                                     <div className='border-b-[2px] border-[#BEBEBE] lg:mb-6 mb-4'>
