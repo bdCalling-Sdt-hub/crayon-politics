@@ -23,12 +23,9 @@ const NewsLetter:React.FC = () => {
         }
     }
     return (
-        <div >
-            
-            <div className='w-fit flex items-center gap-4'>
+        <div className='flex flex-col sm:flex-row items-center gap-4'>
                     <Input
                         style={{
-                            width: 300,
                             background: "white",
                             border: "none",
                             outline: "none",
@@ -40,18 +37,16 @@ const NewsLetter:React.FC = () => {
                         value={keyword}
                         onChange={(e)=> setKeyword(e.target.value)}
                         placeholder='Enter Your Email'
-                        className='w-full sm:w-[300px] md:w-full'
+                        className='w-full sm:w-[300px]'
                     />
                     <button 
                         disabled={!keyword} 
                         onClick={handleSubscribe} 
-                        className='disabled:bg-gray-600 heading disabled:cursor-not-allowed  rounded-[12px] whitespace-nowrap h-12 bg-[#07254A] border-none outline-none  text-white w-full sm:w-fit px-4'
+                        className='disabled:bg-gray-600 heading disabled:cursor-not-allowed w-full md:w-fit rounded-[12px] whitespace-nowrap h-12 bg-[#07254A] border-none outline-none  text-white px-4'
                         >
                             Subscribe to newsletter
                         </button>
                 </div>
-            
-        </div>
     )
 }
 
