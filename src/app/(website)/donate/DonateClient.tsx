@@ -7,7 +7,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Button, Form } from 'antd';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-
 const stripePromise = loadStripe('pk_test_51JwnGrLiLwVG3jO00U7B3YmokwdPnB6FKd1uresJgkbsL4f5xUfCmbFdBaGO42KvLmLfVzsgo1oIQToXABSTyypS00xQsEgKZ6');
 
 const DonateClient = () => {
@@ -39,20 +38,14 @@ const DonateClient = () => {
         
     }
     return (
-        <div className='container py-10'>
+        <div className='container'>
 
             {/* heading  */}
-           <div className='px-0   md:px-24'>
+           <div className='px-0'>
            <Heading name="Defend Our Democracy and Donate Today"  style="font-normal heading  w-fit lg:text-[32px] text-[28px] border-b-[4px] lg:pb-3 border-[#9C1E2E]  leading-[48px] text-[#3E3E3E] mb-6" />
 
                 <p className='font-normal text-[16px] text-justify leading-6 text-[#525252]'>
-                    Vote.org fights for voters in every state, in every way possible. There is no other organization engaging in this work on every front, on every level: serving individual voters, creatively building tech and partnerships and programs to reach underserved voters, and fighting harmful voter suppression laws in the courts.
-                </p>
-
-                <br />
-
-                <p className='font-normal text-[16px]  text-justify leading-6 text-[#525252]'>
-                    Vote.org fights for voters in every state, in every way possible. There is no other organization engaging in this work on every front, on every level: serving individual voters, creatively building tech and partnerships and programs to reach underserved voters, and fighting harmful voter suppression laws in the courts.
+                    Your support will go towards growing our team and advancing our mission of uplifting voices and communities through political literacy. Everyone has the power to make a difference through their vote but voting literacy is necessary to ensure we vote the right people in office. Join our efforts to uniquely impact our government by strengthening our voters with knowledge.
                 </p>
            </div>
 

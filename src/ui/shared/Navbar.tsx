@@ -35,7 +35,9 @@ const Navbar = () => {
             path: "/news"
         }
     ] 
-
+    const renderer = ({ days}: { days: any }) => {
+      return <span>{days}</span>;
+    };
     const menuItems = [
         ...items.map((value , index) => ({
           key: index,
@@ -60,16 +62,14 @@ const Navbar = () => {
           key: "next-election",
           label: (
             <div className='bg-primary h-9 rounded-md px-2 text-[#07254A] text-[14px]  font-normal  flex items-center justify-center'>
-                    Your next election is in 61 days
+                    <p>Your next election is in <Countdown renderer={renderer} date={new Date('2024-11-05T00:00:00')}/> days</p>
                 </div>
           ),
         },
      
     ]; 
 
-    const renderer = ({ days}: { days: any }) => {
-      return <span>{days}</span>;
-    };
+    
 
     return (
         <div className={`bg-primary lg:sticky top-0 z-20 h-20 flex justify-center`}>

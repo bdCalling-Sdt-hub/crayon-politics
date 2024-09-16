@@ -45,7 +45,7 @@ const NewsClient = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-10">
+        <div className="container mx-auto pb-10">
 
             {/* Heading */}
             <Heading

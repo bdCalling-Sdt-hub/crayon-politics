@@ -144,7 +144,7 @@ const HomeClient = () => {
         });
 
         return () => {
-            sectionRefs.current.forEach((ref) => {
+            sectionRefs?.current?.forEach((ref) => {
                 if (ref) observer.unobserve(ref);
             });
         };
@@ -240,7 +240,7 @@ const HomeClient = () => {
                     {
                         candidates?.data?.map((candidate:ICandidateProps, index:number)=>{
                             return(
-                                <Link href={`#candidate-1`} key={index}>
+                                <Link href={`#candidate-${index + 1}`} key={index}>
                                     <div className='mx-auto' onClick={()=>( setColor(candidate?.color), setIndex(index)) }>
                                         {
                                             candidate?.image
@@ -321,7 +321,7 @@ const HomeClient = () => {
                     </div>
                     
                     
-                    <section className='lg:w-[20%] hidden w-[100%] sticky lg:top-[15%] top-0 z-10 h-full md:flex items-center justify-center bg-[white] pt-4 pb-[0px] '>
+                    <section className='lg:w-[20%] hidden w-[100%] my-auto sticky lg:top-[15%] top-0 z-10 h-full md:flex items-center justify-center bg-[white] pt-4 pb-[0px] '>
                         <ConfigProvider
                             theme={{
                                 components: {
@@ -365,14 +365,10 @@ const HomeClient = () => {
 
                     
                 </div> 
-
-
-                
             </div>
 
-            <LearnAboutElection/>
             <Faq/>
-            <NewsLetter/>
+            <LearnAboutElection/>
         </>
     )
 }

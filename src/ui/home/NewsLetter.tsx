@@ -23,42 +23,30 @@ const NewsLetter:React.FC = () => {
         }
     }
     return (
-        <div className='bg-[#F0F0F0] py-6'>
-            <div className='flex lg:flex-row flex-col items-center justify-between container  gap-3'>
-                <Image
-                    alt='logo'
-                    src={Logo}
-                    width={300}
-                    height={40}
-                />
-                <div className=' w-full lg:w-[50%] flex flex-col sm:flex-row gap-3'>
+        <div className='flex flex-col sm:flex-row items-center justify-center gap-4'>
                     <Input
                         style={{
                             background: "white",
                             border: "none",
                             outline: "none",
                             boxShadow: "none",
-                            borderRadius: 90,
+                            borderRadius: 12,
                             height: 48
                         }}
                         type='email'
                         value={keyword}
                         onChange={(e)=> setKeyword(e.target.value)}
                         placeholder='Enter Your Email'
-                        className='w-full sm:w-[300px] md:w-full'
+                        className='w-full sm:w-[300px]'
                     />
                     <button 
                         disabled={!keyword} 
                         onClick={handleSubscribe} 
-                        className='disabled:bg-gray-600 heading disabled:cursor-not-allowed  rounded-[90px] whitespace-nowrap h-12 bg-[#07254A] border-none outline-none  text-white w-full sm:w-fit px-4'
+                        className='disabled:bg-gray-600 heading disabled:cursor-not-allowed w-full sm:w-fit rounded-[12px] whitespace-nowrap h-12 bg-[#07254A] border-none outline-none  text-white px-4'
                         >
                             Subscribe to newsletter
                         </button>
                 </div>
-            </div>
-            
-            
-        </div>
     )
 }
 
