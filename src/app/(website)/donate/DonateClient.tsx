@@ -90,7 +90,7 @@ const DonateClient = () => {
                                     return(
                                         <p 
                                             key={index} 
-                                            className={`w-[90px] text-center cursor-pointer ${amount === selectedAmount ? "bg-[#FF7070] text-white border-transparent" : "border-[#D0D0D0]"} px-4 py-2 rounded-[90px] border `}
+                                            className={`w-[90px] whitespace-nowrap text-center cursor-pointer ${amount === selectedAmount ? "bg-[#FF7070] text-white border-transparent" : "border-[#D0D0D0]"} px-4 py-2 rounded-[90px] border `}
                                             onClick={()=>(setSelectedAmount(amount), form.setFieldsValue({amount: amount}) )}
                                         >
                                             {amount} USD
