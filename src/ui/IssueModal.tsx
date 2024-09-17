@@ -1,8 +1,7 @@
 import { useIssueMutation, useStateQuery } from '@/redux/apiSlices/webSlice';
-import { Button, ConfigProvider, DatePicker, Form, Input, Modal, Select } from 'antd'
+import { Button, ConfigProvider, Form, Input, Modal, Select } from 'antd'
 import React from 'react'
 import toast from 'react-hot-toast';
-import { CiCalendarDate } from 'react-icons/ci';
 import { IoIosArrowDown } from 'react-icons/io';
 import { MoonLoader } from 'react-spinners';
 
@@ -92,14 +91,20 @@ const IssueModal: React.FC<IIssueProps> = ({open, setOpen}) => {
                             style={{ marginBottom: 0 }}
                             className='col-span-12 sm:col-span-6'
                             label={<p>Age</p>}
-                            valuePropName='dateOfBirth'
-                            getValueFromEvent={(value: any) => value.format("YYYY-MM-DD")}
                         >
-                            <DatePicker
-                                placeholder="Age"
-                                style={{ height: 40, width: "100%" }}
-                                format={"YYYY-MM-DD"}
-                                suffixIcon={<CiCalendarDate size={24} color='#666666' />}
+                            <Input
+                                placeholder={`Enter Your Age`}
+                                style={{
+                                    width: "100%",
+                                    border: "1px solid #d9d9d9",
+                                    height: 40,
+                                    background: "white",
+                                    borderRadius: "8px",
+                                    outline: "none",
+                                    color: "#838383",
+                                    fontWeight: 400,
+                                    fontSize: "15px",
+                                }}
                             />
                         </Form.Item>
 

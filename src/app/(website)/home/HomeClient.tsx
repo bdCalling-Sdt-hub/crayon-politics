@@ -20,6 +20,7 @@ interface ICandidateProps{
     color: string,
     politicalAffiliation?: string;
     issues?: [string];
+    about?:string;
 }
 
 
@@ -149,6 +150,7 @@ const HomeClient = () => {
             });
         };
     }, []);
+    
 
     useEffect(() => {
         const handleScroll = () => {
@@ -304,7 +306,7 @@ const HomeClient = () => {
                                                         />
                                                     }
                                                     <p className='heading text-center lg:px-0 px-4 text-[#07254A] whitespace-nowrap lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
-                                                    <p className="text-[#8F8F8F] whitespace-nowrap text-sm text-center leading-[21px] font-normal">({candidate?.politicalAffiliation})</p>
+                                                    <p className="text-[#8F8F8F] whitespace-nowrap text-sm text-center leading-[21px] font-normal">{candidate?.about}</p>
                                                 </div>
                                                 <div className='w-full'>
                                                     <div className='border-b-[2px] border-[#BEBEBE] lg:mb-6 mb-4'>
@@ -367,8 +369,8 @@ const HomeClient = () => {
                 </div> 
             </div>
 
-            <Faq/>
             <LearnAboutElection/>
+            <Faq/>
         </>
     )
 }

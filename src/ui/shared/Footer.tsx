@@ -73,7 +73,7 @@ const Footer:React.FC = () => {
             <GoogleAds/>
 
             <div className='border-b-[1px] border-white  border-dashed  pt-10 pb-6 container flex items-center justify-between '>
-                <Image className='brightness-0 invert' src={Logo} alt='logo' width={200} height={50} />
+                <Image className='brightness-0 invert' src={Logo} alt='logo' width={180} height={50} />
                 <div className='flex items-center gap-4' >
                     {
                         socialMedia?.map((item, index)=>{
@@ -117,7 +117,7 @@ const Footer:React.FC = () => {
                     <NewsLetter/> 
                 </div>
             </div>
-            <p className='container text-white mt-6 pb-10 md:pb-20'>© All rights reserved by Crayon Politics</p>
+            <p className='container text-white text-[14px] md:text-[16px] mt-6 pb-10 md:pb-20'>© All rights reserved by Crayon Politics</p>
 
             <Modal
                 title="Feedback"

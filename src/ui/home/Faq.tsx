@@ -29,7 +29,7 @@ const Faq: React.FC = () => {
         <div className='container mb-11'>
             <Heading 
                 name="Frequently Asked Questions" 
-                style="font-normal heading w-fit lg:text-[32px] text-[28px] border-b-[4px] mx-auto lg:pb-3 border-[#9C1E2E] leading-[48px] text-[#3E3E3E] lg:mb-10 mb-6" 
+                style="font-normal heading w-fit lg:text-[32px] text-[26px] border-b-[4px] mx-auto lg:pb-3 border-[#9C1E2E] leading-[48px] text-[#3E3E3E] lg:mb-10 mb-6" 
             />
 
             <Collapse

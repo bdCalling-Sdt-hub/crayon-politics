@@ -57,7 +57,8 @@ const NewsClient = () => {
             <div className="grid grid-cols-12 gap-6">
                 {/* Main News Section */}
                 <div className="lg:col-span-7 col-span-12">
-                    <div className="border-b-[1px] border-[#D0D0D0] pb-6">
+
+                    <div style={{ display: topNews?.data?.image ? "block" : "none" }} className="border-b-[1px] border-[#D0D0D0] pb-6">
                         {/* Latest News */}
                         <div className="relative h-[300px] lg:h-[400px] w-full border mb-4">
                             {
