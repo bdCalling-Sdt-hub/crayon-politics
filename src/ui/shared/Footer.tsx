@@ -117,7 +117,7 @@ const Footer:React.FC = () => {
                     <NewsLetter/> 
                 </div>
             </div>
-            <p className='container text-white text-[14px] md:text-[16px] mt-6 pb-10 md:pb-20'>© All rights reserved by Crayon Politics</p>
+            <p className='container text-white text-[13px] mt-6 pb-10 md:pb-20'>© All rights reserved by Crayon Politics</p>
 
             <Modal
                 title="Feedback"

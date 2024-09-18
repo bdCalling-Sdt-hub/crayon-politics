@@ -51,13 +51,7 @@ const HomeClient = () => {
             setState(states?.data[0]?.name)
         }
     }, [elections, states])
-
-
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 1024);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -96,24 +90,9 @@ const HomeClient = () => {
         };
     }, [openLocation]);
 
-    const [showBackTop, setShowBackTop] = useState(false);
-
-    // Monitor scroll event
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            setShowBackTop(scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
 
     const [color, setColor] = useState("")
+
     const handleScrollToSection = (index: number, color:string) => {
         setColor(color)
         const section = document.getElementById(`candidate-${index + 1}`);
@@ -124,44 +103,35 @@ const HomeClient = () => {
     };
 
     const [activeIndex, setActiveIndex] = useState(0);
+    
     const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
     useEffect(() => {
-        // Intersection Observer for tracking candidate sections
         const observer = new IntersectionObserver(
             (entries) => {
-                entries.forEach((entry:any) => {
-                    if (entry?.isIntersecting) {
+                entries.forEach((entry: any) => {
+                    if (entry.isIntersecting) {
                         const index = sectionRefs.current.indexOf(entry.target);
-                        setActiveIndex(index); // Update active index based on visibility
+                        setActiveIndex(index);
+                        setColor(candidates?.data[index]?.color); // Set the color for the active section
                     }
                 });
             },
-            { threshold: 0.5 } // Adjust threshold for better results
+            { threshold: 0.5 }
         );
-
+    
         sectionRefs.current.forEach((ref) => {
             if (ref) observer.observe(ref);
         });
-
+    
         return () => {
-            sectionRefs?.current?.forEach((ref) => {
+            sectionRefs.current.forEach((ref) => {
                 if (ref) observer.unobserve(ref);
             });
         };
-    }, []);
+    }, [candidates]);
     
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowBackTop(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
     
     return (
         <>
@@ -305,8 +275,8 @@ const HomeClient = () => {
                                                             }}
                                                         />
                                                     }
-                                                    <p className='heading text-center lg:px-0 px-4 text-[#07254A] whitespace-nowrap lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
-                                                    <p className="text-[#8F8F8F] whitespace-nowrap text-sm text-center leading-[21px] font-normal">{candidate?.about}</p>
+                                                    <p className='heading text-center lg:px-0 px-4 text-[#07254A] lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
+                                                    <p className="text-[#8F8F8F] text-sm text-center leading-[21px] font-normal">{candidate?.about}</p>
                                                 </div>
                                                 <div className='w-full'>
                                                     <div className='border-b-[2px] border-[#BEBEBE] lg:mb-6 mb-4'>
@@ -341,25 +311,26 @@ const HomeClient = () => {
                             >
                                 {candidates?.data?.map((person: ICandidateProps, indexItem: number) => (
                                     <Timeline.Item
-                                        key={indexItem}
-                                        dot={
-                                            <div
-                                                onClick={() => handleScrollToSection(indexItem, person.color)}
-                                                style={{
-                                                    background: activeIndex === indexItem ? person.color : "#525252",
-                                                }}
-                                                className={`w-3 h-3 cursor-pointer rounded-full`}
-                                            />
-                                        }
+                                    key={indexItem}
+                                    dot={
+                                        <div
+                                            onClick={() => handleScrollToSection(indexItem, person.color)}
+                                            style={{
+                                                background: activeIndex === indexItem ? person.color : "#525252", // Active color
+                                            }}
+                                            className={`w-3 h-3 cursor-pointer rounded-full`}
+                                        />
+                                    }
+                                >
+                                    <p
+                                        className={`text-[#525252] heading ${
+                                            activeIndex === indexItem ? "font-semibold" : "font-normal"
+                                        } transition-all ease-linear duration-150`}
                                     >
-                                        <p
-                                            className={`text-[#525252] heading ${
-                                                person.color === color ? "font-semibold" : "font-normal"
-                                            } transition-all ease-linear duration-150`}
-                                        >
-                                            {person.name}
-                                        </p>
-                                    </Timeline.Item>
+                                        {person.name}
+                                    </p>
+                                </Timeline.Item>
+                                
                                 ))}
                             </Timeline>
                         </ConfigProvider>
