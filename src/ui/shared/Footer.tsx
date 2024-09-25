@@ -69,8 +69,12 @@ const Footer:React.FC = () => {
         }
     }
     return (
-        <div className='bg-[#07254A]'>
+        <>
+        <div className='border'>
             <GoogleAds/>
+        </div>
+        <div className='bg-[#07254A]'>
+            
 
             <div className='border-b-[1px] border-white  border-dashed  pt-10 pb-6 container flex items-center justify-between '>
                 <Image className='brightness-0 invert' src={Logo} alt='logo' width={180} height={50} />
@@ -169,6 +173,7 @@ const Footer:React.FC = () => {
                 </div>}
             />
         </div>
+        </>
     )
 }
 

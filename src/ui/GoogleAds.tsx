@@ -1,12 +1,8 @@
-/* eslint-disable @next/next/no-before-interactive-script-outside-document */
-
 import Script from 'next/script';
 import { useEffect } from 'react';
 
-
 const GoogleAds = () => {
   useEffect(() => {
-    // Ensure the adsbygoogle script has loaded before pushing ads
     if ((window as any).adsbygoogle && typeof (window as any).adsbygoogle.push === 'function') {
       (window as any).adsbygoogle.push({});
     }
@@ -17,7 +13,11 @@ const GoogleAds = () => {
       <Script
         async
         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4056776825481824`}
-        strategy="beforeInteractive"
+        onLoad={() => {
+          if ((window as any).adsbygoogle && typeof (window as any).adsbygoogle.push === 'function') {
+            (window as any).adsbygoogle.push({});
+          }
+        }}
       />
       
       <ins
