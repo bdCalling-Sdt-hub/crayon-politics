@@ -70,9 +70,9 @@ const Footer:React.FC = () => {
     }
     return (
         <>
-        <div className='border'>
+        {/* <div className='border'>
             <GoogleAds/>
-        </div>
+        </div> */}
         <div className='bg-[#07254A]'>
             
 

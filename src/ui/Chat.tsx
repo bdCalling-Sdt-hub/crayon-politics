@@ -16,14 +16,14 @@ const Chat = () => {
 
             <div 
                 className={`
-                    w-[349px] overflow-hidden h-[451px] fixed right-[100px] bottom-[120px]
+                    w-[300px] md:w-[349px] overflow-hidden h-[451px] fixed right-6 md:right-[100px] bottom-[200px] md:bottom-[120px]
                     ${open ? "z-20 transition-all duration-200 " : "-z-50 transition-all duration-200"}
                 `}
             >
                 <div
                     className={`
                         bg-white border-2 border-primary rounded-[13px]
-                        ${open ? "translate-x-0 transition-all duration-200 " : "translate-x-[360px] transition-all duration-200"}
+                        ${open ? "translate-y-0  translate-x-0 transition-all duration-200 " : "translate-y-[500px] md:translate-y-0 md:translate-x-[360px] transition-all duration-200"}
                     `}
                 >
                         {/* head */}
@@ -61,7 +61,7 @@ const Chat = () => {
                                 />
                                 <div 
                                     style={{
-                                        borderRadius: "100%"
+                                        clipPath: "circle()"
                                     }}
                                     className='bg-[#07254A] w-10 h-10 flex items-center justify-center'
                                 >
@@ -79,12 +79,12 @@ const Chat = () => {
                 </div>
             </div>
 
-            <div className='z-20 fixed right-6 bottom-[120px] flex items-center'>
+            <div className='z-20 fixed right-6 bottom-[120px] flex flex-col md:flex-row items-center'>
                 <div className='w-6 h-6 flex items-center justify-center overflow-hidden'>
                     <BiSolidLeftArrow 
                         size={16} 
                         color='#07254A' 
-                        className={` ${open ? "translate-x-0 transition-all duration-200" : "translate-x-5 transition-all duration-200"}  `}
+                        className={`rotate-90 md:rotate-0  ${open ? "translate-y-0 translate-x-0 transition-all duration-200" : " translate-y-5 md:translate-y-0 md:translate-x-5 transition-all duration-200"}  `}
                     />
                 </div>
                 <div 

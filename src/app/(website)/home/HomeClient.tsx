@@ -243,14 +243,14 @@ const HomeClient = () => {
                 
                 <div className='flex lg:flex-row flex-col-reverse   items-start justify-between lg:gap-16 gap-6'>
                     <div className='lg:w-[80%] w-[100%] flex items-center justify-center'>
-                        <div className='w-full py-6 home grid grid-cols-1 gap-10 h-screen lg:h-[calc(100vh-180px)] overflow-y-auto snap-y snap-mandatory'>
+                        <div className='w-full py-6 home grid grid-cols-1 gap-10 h-screen xl:h-[calc(100vh-180px)] overflow-y-auto snap-y snap-mandatory'>
                             {
                                 candidates?.data?.map((candidate: ICandidateProps, index: number) => {
                                     return (
                                         <section 
                                             ref={(el:any) => (sectionRefs.current[index] = el)}
                                             id={`candidate-${index + 1}`} key={index} 
-                                            className="scroll-smooth lg:h-[calc(100vh-180px)] mt-4 h-screen md:h-[60vh] snap-start px-0 sm:px-0 p-8 flex items-center justify-center w-full"
+                                            className="scroll-smooth xl:h-[calc(100vh-180px)] mt-4 h-screen  snap-start px-0 sm:px-0 p-8 flex items-center justify-center w-full"
                                             
                                         >
                                             <div className={`w-full flex lg:flex-row flex-col gap-5 lg:gap-10 rounded  p-10`}
@@ -307,7 +307,7 @@ const HomeClient = () => {
                             <Timeline 
                             // @ts-ignore
                                 mode={isMobile ? 'bottom' : 'left'}
-                                className={`flex ${isMobile ? 'flex-wrap gap-4 ' : 'lg:flex-col'}`}
+                                className={`flex ${isMobile ? 'flex-wrap gap-4 ' : 'lg:flex-col gap-6'}`}
                             >
                                 {candidates?.data?.map((person: ICandidateProps, indexItem: number) => (
                                     <Timeline.Item
