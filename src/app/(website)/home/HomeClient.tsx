@@ -217,17 +217,23 @@ const HomeClient = () => {
                                         {
                                             candidate?.image
                                             &&
-                                            <Image
-                                                alt='Candidate'
-                                                width={150}
-                                                height={150}
-                                                src={`${imageUrl}${candidate.image}`}
+                                            <div 
                                                 style={{
-                                                    borderRadius: "100%",
+                                                    clipPath: "circle()",
                                                     borderWidth: 3,
                                                     borderColor: candidate.color
                                                 }}
-                                            />
+                                                className='relative rounded-full h-[150px] w-[150px]'
+                                            >
+                                                <Image
+                                                    alt='Candidate'
+                                                    fill
+                                                    src={`${imageUrl}${candidate.image}`}
+                                                    style={{
+                                                        clipPath: "circle()"
+                                                    }}
+                                                />
+                                            </div>
                                         }
                                         <p className='text-[#242424] heading text-[16px] text-center leading-6 mt-4 font-medium'>{candidate.name}</p>
                                     </div>
@@ -262,18 +268,23 @@ const HomeClient = () => {
                                                     {
                                                         candidate?.image
                                                         &&
-                                                        <Image
-                                                            alt='Candidate'
-                                                            width={150}
-                                                            height={150}
-                                                            src={`${imageUrl}${candidate.image}`}
+                                                        <div 
                                                             style={{
-                                                                margin: "0 auto",
-                                                                borderRadius: "100%",
+                                                                clipPath: "circle()",
                                                                 borderWidth: 3,
                                                                 borderColor: candidate.color
                                                             }}
-                                                        />
+                                                            className='relative rounded-full h-[150px] w-[150px]'
+                                                        >
+                                                            <Image
+                                                                alt='Candidate'
+                                                                fill
+                                                                src={`${imageUrl}${candidate.image}`}
+                                                                style={{
+                                                                    clipPath: "circle()"
+                                                                }}
+                                                            />
+                                                        </div>
                                                     }
                                                     <p className='heading text-center lg:px-0 px-4 text-[#07254A] lg:text-[24px] text-[20px] lg:leading-[36px] leading-[20px] font-medium lg:mt-6 mt-4'>{candidate?.name}</p>
                                                     <p className="text-[#8F8F8F] text-sm text-center leading-[21px] font-normal">{candidate?.about}</p>
