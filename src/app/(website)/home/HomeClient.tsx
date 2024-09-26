@@ -272,6 +272,7 @@ const HomeClient = () => {
                                                             style={{
                                                                 clipPath: "circle()",
                                                                 borderWidth: 3,
+                                                                margin: "0 auto",
                                                                 borderColor: candidate.color
                                                             }}
                                                             className='relative rounded-full h-[150px] w-[150px]'
