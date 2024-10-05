@@ -11,7 +11,7 @@ const layout = ({children}: {children: React.ReactNode}) => {
             <div className='min-h-screen pt-10'>
                 {children}
             </div>
-            <Chat/>
+            {/* <Chat/> */}
             <Footer/>
         </div>
     )

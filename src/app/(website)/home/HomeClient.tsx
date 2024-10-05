@@ -145,7 +145,7 @@ const HomeClient = () => {
                             <GiVote color='#666666' size={24} />
                             <p className='text-[#666666] text-[16px] leading-6 font-normal'>{ election || elections?.data[0]?.name}</p>
 
-                            <div ref={electionRef} style={{display: open ? "block" : "none"}} className='absolute top-10 left-0 w-full bg-white shadow-md'>
+                            <div ref={electionRef} style={{display: open ? "block" : "none"}} className='absolute z-10 top-10 left-0 w-full bg-white shadow-md'>
                                 <ul>
                                     {
                                         elections?.data?.map((item: any, index:number)=>{
@@ -178,7 +178,7 @@ const HomeClient = () => {
                             <div 
                                 ref={locationRef} 
                                 style={{display: openLocation ? "block" : "none"}} 
-                                className='absolute overflow-y-auto h-[410px] top-10 left-0 w-fit bg-white shadow-md'
+                                className='absolute overflow-y-auto h-[410px] z-10 top-10 left-0 w-fit bg-white shadow-md'
                             >
                                 <ul>
                                     {
